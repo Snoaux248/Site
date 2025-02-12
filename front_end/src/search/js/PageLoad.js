@@ -22,7 +22,7 @@ window.addEventListener('load', (e) =>{
     }
     
 });
-var FileTarget = "/search/userSavedLinks.txt";
+var FileTarget = "search/userSavedLinks.txt";
 Load_Users_HyperLinks(FileTarget);
 
 var Temp_Values = new Array(6);
