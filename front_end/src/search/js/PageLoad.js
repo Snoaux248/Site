@@ -58,7 +58,7 @@ async function Load_Users_HyperLinks(FileToRead){
       CheckHyperlinkArrangment();
     });
 
-    let response = await fetch(FileTarget);
+    let response = await fetch(FileToRead);
     let data = await response.blob();
     inFS.readAsText(data);
     inFS.destroy;
