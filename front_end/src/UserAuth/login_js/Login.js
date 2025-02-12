@@ -21,7 +21,7 @@ LoginButton.addEventListener("click", (e) => {
     }else{
     	Error.style.opacity = "1";
     }
-})https://snoaux248.github.io/Site/front_end/src/search.html
+})
 CreateAccountButton.addEventListener("click", (e) => {
 	e.preventDefault();
     window.location.assign("https://snoaux248.github.io/Site/front_end/src/UserAuth/Account.html");
