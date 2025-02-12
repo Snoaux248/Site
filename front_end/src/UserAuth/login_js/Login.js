@@ -16,12 +16,12 @@ LoginButton.addEventListener("click", (e) => {
     var User = Email.value;
     var Pass = Password.value;
     if(User === "User" && Pass === "Pass"){
-        window.location.assign("http://127.0.0.1:8000/Snow/Search");
+        window.location.assign("https://snoaux248.github.io/Site/");
         var ID = "Acc1";
     }else{
     	Error.style.opacity = "1";
     }
-})
+})https://snoaux248.github.io/Site/front_end/src/search.html
 CreateAccountButton.addEventListener("click", (e) => {
 	e.preventDefault();
     window.location.assign("https://snoaux248.github.io/Site/front_end/src/UserAuth/Account.html");
