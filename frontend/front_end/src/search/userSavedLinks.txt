@@ -1,0 +1,13 @@
+https://www.google.com/|Google|#f6f6f6|#ffffff|#000000|#A7DDEE|
+https://www.apple.com/|Apple|#f6f6f6|#ffffff|#000000|#A7DDEE|
+./|System|#f6f6f6|#ffffff|#000000|#A7DDEE|
+https://www.desmos.com/calculator|Desmos|#77bb41|#ffffff|#ffffff|#77bb41|
+https://webwork.math.ttu.edu/webwork2/spr24anpeacem2450s022/|Web Work|#2b81be|#ffffff|#ffffff|#2b81be|
+https://webwork.math.ttu.edu/webwork2/f24lchristem2360s021/|Web Work|#2b81be|#ffffff|#ffffff|#2b81be|
+https://www.cengage.com|Cengage|#2b81be|#ffffff|#ffffff|#2b81be|
+https://active.cognella.com/|Cognella|#2b81be|#ffffff|#ffffff|#2b81be|
+https://outlook.office.com/mail/|TTU Email|#2b81be|#ffffff|#ffffff|#2b81be|
+https://ttu.blackboard.com/ultra/institution-page|Black Board|#be38f3|#f6f6f6|#f6f6f6|#be38f3|
+https://app.tophat.com|Top Hat|#be38f3|#f6f6f6|#f6f6f6|#be38f3|
+https://www.youtube.com|YouTube|#d62424|#ffffff|#ffffff|#d62424|
+https://portal.texastech.edu/web/ttu/my-tech|Raider Link|#d62424|#ffffff|#ffffff|#d62424|

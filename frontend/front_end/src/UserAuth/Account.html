@@ -1,0 +1,86 @@
+<html>
+    <head>
+            <title></title>
+            <link rel="stylesheet" media="screen" href="/create_account_css/Account.css" type="text/css"/>
+            <link rel="stylesheet" media="screen" href="/stylesheet.css" type="text/css"/>
+            <script defer src="/create_account_js/Account.js"></script>
+    </head>
+    <body>
+        <main>
+            <form id="LoginForm">
+                <div id="Title">
+                    <p id="Header">Create</p><p id="Name">Snow</p><p id="Header">Account</p>
+                </div>
+                <div id="R1">
+                        <div id="T">
+                            <a class="TF">First Name</a>
+                        </div>
+                        <div id="T">
+                            <a class="TF">Last Name</a>
+                        </div>
+                        <br>
+                        <input type="text" id="FirstName" class="TextFeild" placeholder="*John" autocomplete="off">
+                        <input type="text" id="LastName" class="TextFeild" placeholder="*Doe" autocomplete="off">
+                        <div class="EC" id="FNEM">
+                            <a id="E1" class="Error"> First Name</a>
+                        </div>
+                        <div class="EC" id="LNEM">
+                            <a id="E2" class="Error"> Last Name</a>
+                        </div>
+                </div>
+                <div id="Row2">
+                        <div id="T">
+                            <a class="TF">Username</a>
+                        </div>
+                        <div id="T">
+                            <a class="TF">Email</a>
+                        </div>
+                        <br>
+                        <input type="text" id="User" class="TextFeild" placeholder="*Snow1234" autocomplete="off">
+                        <input type="email" id="Email" class="TextFeild" placeholder="*Example0@snow.com" autocomplete="off">
+                        <div class="EC" id="UNEM">
+                            <a id="E3" class="Error"> Username</a>
+                        </div>
+                        <div class="EC" id="EMEM">
+                            <a id="E4" class="Error"> Email</a>
+                        </div>
+                </div>
+                <div id="Row3">
+                        <div id="T2">
+                            <a class="TF">Password</a>
+                        </div>
+                        <br>
+                        <input type="password" id="Pass" class="TextFeild" placeholder="*" autocomplete="off">
+                        <div class="EC" id="PWEM">
+                            <a id="E5" class="Error">  Password</a>
+                        </div>
+                        <div id="T2">
+                            <a class="TF">Password Confirm</a>
+                        </div>
+                        <br>
+                        <input type="password" id="PassConfirm" class="TextFeild" placeholder="*" autocomplete="off">
+                        <div class="EC" id="PWCEM">
+                            <a id="E6" class="Error"> Confirm Password</a>
+                        </div>
+                </div>
+                <div id="Row4">
+                        <div id="T2">
+                            <a class="TF">Date of Birth</a>
+                        </div>
+                        <br>
+                        <input type="number" id="DobMonth" class="TextFeild2" placeholder="*MM" autocomplete="off">
+                        <input type="number" id="DobDay" class="TextFeild2" placeholder="*DD" autocomplete="off">
+                        <input type="number" id="DobYear" class="TextFeild2" placeholder="*YYYY" autocomplete="off">
+                        <div class="EC" id="DOBEM">
+                            <a id="E7" class="Error"> Confirm Password</a>
+                        </div>
+                </div>
+                <div id="Buttons">
+                    <input type="submit" id="CreateAccount" class="Button" value="Create Account">
+                        
+                    <input type="submit" id="Cancel" class="Button" onclick="DiscardClick()" value="Discard">
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

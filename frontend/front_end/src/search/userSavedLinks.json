@@ -1,0 +1,106 @@
+[
+  {
+    "url": "https://www.google.com/",
+    "name": "Google",
+    "backgroundColor": "#f6f6f6",
+    "textColor": "#ffffff",
+    "borderColor": "#000000",
+    "highlightColor": "#A7DDEE"
+  },
+  {
+    "url": "https://www.apple.com/",
+    "name": "Apple",
+    "backgroundColor": "#f6f6f6",
+    "textColor": "#ffffff",
+    "borderColor": "#000000",
+    "highlightColor": "#A7DDEE"
+  },
+  {
+    "url": "./",
+    "name": "System",
+    "backgroundColor": "#f6f6f6",
+    "textColor": "#ffffff",
+    "borderColor": "#000000",
+    "highlightColor": "#A7DDEE"
+  },
+  {
+    "url": "https://www.desmos.com/calculator",
+    "name": "Desmos",
+    "backgroundColor": "#77bb41",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#77bb41"
+  },
+  {
+    "url": "https://webwork.math.ttu.edu/webwork2/spr24anpeacem2450s022/",
+    "name": "Web Work",
+    "backgroundColor": "#2b81be",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#2b81be"
+  },
+  {
+    "url": "https://webwork.math.ttu.edu/webwork2/f24lchristem2360s021/",
+    "name": "Web Work",
+    "backgroundColor": "#2b81be",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#2b81be"
+  },
+  {
+    "url": "https://www.cengage.com",
+    "name": "Cengage",
+    "backgroundColor": "#2b81be",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#2b81be"
+  },
+  {
+    "url": "https://active.cognella.com/",
+    "name": "Cognella",
+    "backgroundColor": "#2b81be",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#2b81be"
+  },
+  {
+    "url": "https://outlook.office.com/mail/",
+    "name": "TTU Email",
+    "backgroundColor": "#2b81be",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#2b81be"
+  },
+  {
+    "url": "https://ttu.blackboard.com/ultra/institution-page",
+    "name": "Black Board",
+    "backgroundColor": "#be38f3",
+    "textColor": "#f6f6f6",
+    "borderColor": "#f6f6f6",
+    "highlightColor": "#be38f3"
+  },
+  {
+    "url": "https://app.tophat.com",
+    "name": "Top Hat",
+    "backgroundColor": "#be38f3",
+    "textColor": "#f6f6f6",
+    "borderColor": "#f6f6f6",
+    "highlightColor": "#be38f3"
+  },
+  {
+    "url": "https://www.youtube.com",
+    "name": "YouTube",
+    "backgroundColor": "#d62424",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#d62424"
+  },
+  {
+    "url": "https://portal.texastech.edu/web/ttu/my-tech",
+    "name": "Raider Link",
+    "backgroundColor": "#d62424",
+    "textColor": "#ffffff",
+    "borderColor": "#ffffff",
+    "highlightColor": "#d62424"
+  }
+]

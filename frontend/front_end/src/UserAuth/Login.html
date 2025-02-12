@@ -1,0 +1,36 @@
+<html>
+    <head>
+            <title></title>
+            <link rel="stylesheet" media="screen" href="/login_css/Login.css" type="text/css"/>
+            <link rel="stylesheet" media="screen" href="/stylesheet.css" type="text/css"/>
+            <script defer src="/login_js/Login.js"></script>
+    </head>
+    <body>
+         <main>
+              <form id="LoginForm">
+                   <div id="Title">
+                        <p id="Header">Login To</p><p id="Name">Snow</p>
+                   </div>
+                   <div id="ErrorMessage">
+                        <div id="EC">
+                             <h id="Error">Incorrect Username <br> or Password</h>
+                        </div>
+                   </div>
+                   <div id="TextFeilds">
+                        <input type="text" id="Email" class="Input" placeholder="Example@snow.com" value="" autocomplete="off">
+                        <br>
+                        <input type="password" id="Pass" class="Input" placeholder="Password" value="" autocomplete="off">
+                        <br>
+                        <input type="checkbox" id="RM" class="InputC"><a id="Check">&nbsp Remember Me</a>
+                   </div>
+                   <div id="Buttons">
+                        <input type="submit" id="Login" class="Button" onclick="LoginClick()" value="Login">
+                        <br>
+                        <input type="submit" id="NewAccount" class="Button" onclick="CreateAccountClick()" value="Create Account">
+                        
+                        <input type="submit" id="Cancel" class="Button" onclick="DiscardClick()" value="Discard">
+                   </div>
+              </form>
+        </main>
+    </body>
+</html>

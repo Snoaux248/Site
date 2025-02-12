@@ -1,0 +1,511 @@
+body{
+    margin: 0px 0px ;
+    
+    /*background: linear-gradient(30deg, rgba(0, 0 ,0) 2%, rgba(49, 11, 114) 20%, rgba(24, 215, 215) 70%, rgb(255 255 255)100%);
+    #background: linear-gradient(30deg, rgb(0 0 82) 5%, rgb(2 89 168) 25%, rgb(74 134 232) 50%, rgb(19 202 241) 70%, rgb(255 255 255)100%);
+    #background: linear-gradient(30deg, rgba(0, 0 ,0) 2%, rgba(49, 11, 114) 20%, rgba(24, 215, 215) 70%, rgba(216, 255, 255)100%);
+    
+    #background: linear-gradient(30deg, rgb(203 186 254) 10%,rgb(191 213 252) 30%, rgba(216, 255, 255)70%, rgb(255 255 255)100%);
+    
+    background-attachment: fixed ;*/
+    
+    font: 16px arial ;
+
+    /*background-color:#232323;*/
+
+    text-align: center ;
+    align-items: center ;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+page{
+    
+    text-align: center ;
+    align-items: center;
+}
+
+/*Page Titles*/
+
+#TitleSmall{
+    
+    margin: 0px auto ;
+    width: 200px ;
+    
+    position: absolute ;
+        top: 12.5px ;
+        left: -200px ;
+        
+    font-family: 'Great Vibes' ;
+    font-size: 40px ;
+    font-weight: normal ;
+    color: #232323 ;
+        
+    transition: .3s ;
+    opacity: 0 ;
+
+    filter:drop-shadow(2px 2px 2px rgb(190, 190, 190, 0.25));
+}
+
+#TitleBig{
+    
+    padding: 150px 0px 30px 0px ;
+    margin: 0px auto ;
+    height: 100px ;
+
+    
+    position: relative ;
+
+    
+    font-family: 'Great Vibes' ;
+    font-size: 80px ;
+    font-weight: bold ;
+    color: #232323 ;
+    
+    transition: .3s ;
+    overflow: hidden ;
+    opacity: 1 ;
+    filter:drop-shadow(2px 2px 2px rgb(190, 190, 190, 0.25));
+}
+
+
+/*SearchBar*/
+
+#SearchAndLinks{
+    
+    margin: 10px auto 0px auto ;
+    border-radius: 23px ;
+    border:0px solid #232323 ;
+    background-color: rgba(35, 35, 35, 90) ;
+
+    position: absolute ;
+        top: 280px ;
+        left: 0 ;
+        right: 0 ;
+    
+    overflow:hidden;
+    transition:.3s ;
+    z-index: 3 ;
+    
+}
+
+@media only screen and (max-width: 610px) and (min-width: 0px){
+    #SearchAndLinks{
+        width: -webkit-calc(100% - 20px);
+    }
+    #Search{
+        width: -webkit-calc(100% - 90px);
+    }
+}
+@media only screen and (max-width: 200000px) and (min-width: 610px){
+    #SearchAndLinks{
+        width:  590px;
+    }
+    #Search{
+        width: 500px ;
+    }
+}
+#SearchAndLinks:hover{
+    /*-webkit-box-shadow: 0px 2px 2px rgb(190, 190, 190, 0.25) ;*/
+    box-shadow: 0px 2px 2px rgb(190, 190, 190, .25) ;
+}
+    #SearchBar{
+        display: inline-flex ;
+        
+        padding:0px;
+        margin: 0px ;
+        height: 44px ;
+        width: -webkit-calc(100% - 2px);
+        
+        background-color:#232323c4;
+        border-radius: 23px ;
+        border:1px solid transparent;
+        position:relative;
+            left:0;
+        
+        overflow: hidden ;
+        transition: .3s ;
+        
+    }
+        #Search{
+        
+            padding: 0px 0px 0px 0px ;
+            
+            background-color: transparent ;
+            border: none ;
+            outline: none ;
+            
+            font-size: 18px ;
+            font-family: arial ;
+            font-weight: normal ;
+            font-style: normal ;
+            color: #888 ;
+        }
+
+        .SearchButton{
+            
+            padding: 7px 10px 7px 12px ;
+            
+            background-color: transparent ;
+            border: none ;
+            outline: none ;
+            
+            font-size: 22px ;
+            font-family: 'Material Icons' ;
+            font-weight: normal ;
+            font-style: normal ;
+            color:#555;
+            
+        }
+
+        .SearchButton:hover{
+            color: #A7DDEE ;
+        }
+
+        #SearchIcon2{
+            padding: 0px ;
+            width: 0px ;
+            
+            transition: .3s ;
+            overflow: hidden ;
+        }
+        #SearchIcon3{
+            position:relative;
+            right:0px;
+        }
+    #SearchSuggestions{
+        position:realtive;
+        opacity:.4;
+        transition:.4s;
+    }
+    #SearchAndLinks:hover #SearchSuggestions{
+        opacity:1;
+    }
+        .ssresult, .ssresultB{
+            display: flex ;
+            
+            padding: 10px 20px ;
+            margin: 0px ;
+            
+            border-radius: 0px ;
+            
+        }
+
+        .ssresult:hover{
+            background-color: #888 ;
+            color: #fff ;
+        }
+
+        .sssresult{
+            display: flex ;
+            
+            padding: 10px 20px ;
+            margin: 0px ;
+            
+            background: linear-gradient(30deg, rgb(191 213 252) 10%, rgba(216, 255, 255)60%, rgb(255 255 255)100%) ;
+            border-radius: 0px ;
+            /*-webkit-box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;*/
+            box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;
+            
+            text-align:left;
+        }
+
+        .sssresult:hover{
+            background-color: #555 ;
+    
+            /*-webkit-box-shadow: 0px 2px 2px rgb(0, 0, 0, .5) ;*/
+            box-shadow: 0px 2px 2px rgb(0, 0, 0, .5) ;
+            
+            color: #fff ;
+        }
+
+        .ssresultB:hover{
+            background-color: #555 ;
+            color: #fff ;
+        }
+
+/*HL editor/creater*/
+    #LinksCreater{
+        
+        padding: 0px 0px 0px 0px ;
+        margin: 0px auto ;
+        height: 0px ;
+        width: auto ;
+        
+        border-radius: 22px ;
+        transition: .3s ;
+        z-index: 10 ;
+        overflow: hidden ;
+    }
+        #LinkTitle{
+
+            margin: 10px 0px 0px 0px;
+            color:#999;
+            font-size: 30px ;
+        }
+        @media only screen and (max-width: 610px) and (min-width: 0px){
+                .linklineholder{
+                    width: -webkit-calc(100% - 20px) ;
+                }
+                .linkce{
+                    width: -webkit-calc(100% - 100px) ;
+                }
+            }
+            @media only screen and (max-width: 2000px) and (min-width: 610px){
+                .linklineholder{
+                    width: 500px ;
+                }
+                .linkce{
+                    width:450px;
+                }
+            }
+        .linklineholder{
+            display: inline-flex ;
+
+            margin: 5px auto ;
+            height:35px;
+
+            background-color: #232323 ;
+            border-radius: 50px ;
+    
+            transition: .3s ;
+        }
+
+        .linklineholder:hover{
+            /*-webkit-box-shadow: 0px 2px 2px rgb(190, 190, 190, 0.25) ;*/
+            box-shadow: 0px 2px 2px rgb(190, 190, 190, .25) ;
+
+        }
+            .linkce{
+                
+                padding: 0px 10px ;
+                margin: 5px 0px 0px 0px ;
+                height: 30px ;
+                
+                
+                background-color: transparent ;
+                border: none ;
+                outline: none ;
+                border-radius: 50px ;
+                
+                font-size: 18px ;
+                color: #A7DDEE ;
+                color: grey ;
+            }
+            .linktext{
+                
+                padding: 8px 6px 7px 15px ;
+                margin: 0px ;
+                width: 44px ;
+                color:#999;
+                font-size: 20px ;
+            }
+
+            .linksclearicon{
+                
+                padding: 8px 10px 6px 6px ;
+                
+                background-color: transparent ;
+                border: none ;
+                outline: none ;
+                
+                font-weight: normal ;
+                font-family: "Material Icons" ;
+                font-size: 20px ;
+                color:#555;
+                
+                text-align: center;
+            }
+
+            .linksclearicon:hover{
+                color: #A7DDEE ;
+            }
+
+    .linkButton{
+        margin: 10px 5px ;
+        padding: 5px 20px ;
+        height: 31px ;
+    
+        background-color: #434343 ;
+        border: none ;
+        outline: none ;
+        border-radius: 50px ;
+        
+        font-size: 18px ;
+        border:1px solid transparent;
+        transition: .3s ;
+        text-align:center;
+        width:120px;
+    }
+    .lb{
+
+        margin: 10px 5px ;
+        padding: 0 2%;
+        height: 31px ;
+    
+        background-color: #434343 ;
+        outline: none ;
+        border-radius: 50px ;
+        
+        font-size: 18px ;
+        border:1px solid transparent;
+        transition: .3s ;
+        width:70px;
+    }
+    .linkbutton:hover,  .lb:hover{
+        /*-webkit-box-shadow: 0px 0px 2px 2px rgb(0, 0, 0, .25);
+        box-shadow: 0px 0px 2px 2px rgb(0, 0, 0, .25);*/
+
+        /*-webkit-box-shadow: 0px 0px 2px 2px rgb(190, 190, 190, 0.25) ;*/
+        box-shadow: 0px 0px 2px 2px rgb(190, 190, 190, .25) ;
+
+        border:1px solid #232323;
+        color: #2092b5 ;
+        color: #A7DDEE;
+    }
+
+    .linkbuttonholder{
+        width:100%;
+        display:inline-flex;
+        overflow:auto;
+        font-family: arial ;
+    }
+
+/*Page Filters*/
+
+
+/*HyperLinks*/
+
+#LinksDiv{
+    
+    display: inline-flex ;
+    flex-wrap: wrap ;
+    
+    margin: 65px auto 0px auto ;
+    height: auto ;
+    width: auto ;
+    
+    /*background-color:#333;*/
+    position: relative ;
+        
+    transition: .3s ;
+    z-index: 0 ;
+    overflow: scroll ;
+}
+
+    .HyperLinkStyle{
+        padding: 1px ;
+        margin: 5px 5px 5px 5px ;
+        height: 110px ;
+        width: 90px ;
+        
+        border-radius: 20px ;
+        
+        transition: .0s ;
+        overflow: scroll ;
+
+        position:relative;
+        left:auto;
+        right:auto;
+        text-align: center ;
+        z-index:auto;
+        border:1px solid transparent;
+        box-shadow: none ;
+
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    
+    }
+    .hyperlinkstyle.dragging :where(.hyperlinktitle, i), .hyperlinkstyle.dragging :where(#LinksRedirect, i){
+        opacity: 0;
+    }
+        #LinksAddButton{
+            
+            padding: 5px 10px 10px 10px ;
+            margin: 14px 15px 10px 15px ;
+            height: 45px ;
+            width: 40px ;
+            
+            background-color: #f6f6f6 ;
+            border-radius: 50px ;
+            
+            font-size: 45px ;
+            transition:.2s;
+        }
+        #LinksAddButton:hover{
+            background-color: #ffffff80 ;
+            -webkit-box-shadow:  0px 2px 2px rgb(0, 0, 0, .25) ;
+            box-shadow:  0px 2px 2px rgb(0, 0, 0, .25) ;
+
+            
+            color: #A7DDEE ;
+        }
+
+        .hyperlinktitle{
+            margin: 0px ;
+            color:#888;
+            font-size: 15px ;
+        }
+
+
+
+        #LinksRedirect{
+            
+            padding: 5px 10px 10px 10px ;
+            margin: 0px 15px 10px 15px ;
+            height: 45px ;
+            width: 40px ;
+            
+            background-color: #f6f6f6 ;
+            border-radius: 50px ;
+            
+            font-size: 45px ;
+            font-family: sans-serif ;
+            transition:.2s;
+        }
+
+        #LinksRedirect:hover{
+            background-color: #ffffff80 ;
+            /*-webkit-box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;*/
+            box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;
+            
+            color: #A7DDEE ;
+        }
+
+        .LinkEditButton{
+            
+            padding: 1px 6px ;
+            margin-left: 12px ;
+            height: 15px ;
+                
+            background-color: transparent ;
+            border: none ;
+            outline: none ;
+            border-radius: 10px ;
+            
+            font-family: 'Material Icons' ;
+            font-size: 20px ;
+            color: transparent ;
+            transition:.2s;
+        }
+        .LinkDeleteButton{
+            
+            padding: 1px 6px ;
+            margin-right: 12px ;
+            height: 15px ;
+            
+            background-color: transparent ;
+            border: none ;
+            outline: none ;
+            border-radius: 10px ;
+            
+            font-family: 'Material Icons' ;
+            font-size: 20px ;
+            color: transparent ;
+            transition:.2s;
+        }
+        .LinkEditButton:hover, .LinkDeleteButton:hover{
+            color: #999 ;
+        }
