@@ -279,7 +279,7 @@ function Keyboard_Controls(buttonIndex){
       document.querySelector('.Search').value += ' ';
     }else if(keyStroke == 'Tab'){
       let SSSS = document.getElementById("Search").value;
-      if(SSSS.at(0) == '/') Search_Commands(.slice(1, SSSS.length), display);
+      if(SSSS.at(0) == '/') Search_Commands(SSSS.slice(1, SSSS.length), display);
     }else if(keyStroke == ''){
       hide_keyboard();
     }
