@@ -24,10 +24,10 @@ LoginButton.addEventListener("click", (e) => {
 })
 CreateAccountButton.addEventListener("click", (e) => {
 	e.preventDefault();
-    window.location.assign("http://127.0.0.1:8000/Snow/CreateAccount");
+    window.location.assign("https://snoaux248.github.io/Site/front_end/src/UserAuth/Account.html");
 })
 DiscardButton.addEventListener("click", (e) => {
 	e.preventDefault();
-    window.location.assign("http://127.0.0.1:8000/Snow/Search");
+    window.location.assign("hhttps://snoaux248.github.io/Site/front_end/src/UserAuth/Login.html");
 })
 
