@@ -5,8 +5,8 @@ function Dark_Mode_Toggle(){
     document.body.style.transition = ".3s";
     
     if(darkmode == true){
-        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Light.css";
-        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Light.css";
+        document.querySelector('#StyleSheetControl1').href = "/search/css/SearchLinks-Light.css";
+        document.querySelector('#StyleSheetControl2').href = "/search/css/PopulateSearch-Light.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Dark Mode";
         darkmode = false;
 
@@ -14,8 +14,8 @@ function Dark_Mode_Toggle(){
         SetVariables("Light");
         
     }else{
-        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Dark.css";
-        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Dark.css";
+        document.querySelector('#StyleSheetControl1').href = "/search/css/SearchLinks-Dark.css";
+        document.querySelector('#StyleSheetControl2').href = "/search/css/PopulateSearch-Dark.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Light Mode";
         darkmode = true;
 
@@ -90,16 +90,16 @@ const runColorMode = (fn) => {
   runColorMode((isDarkMode) => {
     if (isDarkMode) {
 
-        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Dark.css";
-        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Dark.css";
+        document.querySelector('#StyleSheetControl1').href = "/search/css/SearchLinks-Dark.css";
+        document.querySelector('#StyleSheetControl2').href = "/search/css/PopulateSearch-Dark.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Light Mode";
         darkmode = true;
 
 
         SetVariables("Dark");
     } else {
-        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Light.css";
-        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Light.css";
+        document.querySelector('#StyleSheetControl1').href = "/search/css/SearchLinks-Light.css";
+        document.querySelector('#StyleSheetControl2').href = "/search/css/PopulateSearch-Light.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Dark Mode";
         darkmode = false;
 
