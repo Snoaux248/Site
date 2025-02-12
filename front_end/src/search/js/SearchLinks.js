@@ -204,6 +204,7 @@ function ResizeUI(){
               document.getElementById("AE").style.transition = "0s";
               document.getElementById("AE2").style.transition = "0s";
             }, 400 );
+            document.getElementById("Col3").style.display = "none";
             console.log("SearchBar set to substate: 2"); // just below top of screen
             console.log("Page Result height set to state: 2"); // adjusted height for search bar position
         }else if(window.innerWidth >= 830){
@@ -220,6 +221,7 @@ function ResizeUI(){
               document.getElementById("AE").style.transition = "0s";
               document.getElementById("AE2").style.transition = "0s";
             }, 400 );
+            document.getElementById("Col3").style.display = "grid";
             console.log("SearchBar set to substate: 1");  // at top of screen
             console.log("Page Result height set to state: 1"); // adjusted height for search bar position
         }
