@@ -277,7 +277,10 @@ function Keyboard_Controls(buttonIndex){
       Keyboard_Secondary(2);
     }else if(keyStroke == 'Space'){
       document.querySelector('.Search').value += ' ';
-    }else if(keyStroke == 'Esc'){
+    }else if(keyStroke == 'Tab'){
+      let SSSS = document.getElementById("Search").value;
+      if(SSSS.at(0) == '/') Search_Commands(SearchText.slice(1, SearchText.length), display);
+    }else if(keyStroke == ''){
       hide_keyboard();
     }
   }else if(buttonIndex == 1 || buttonIndex == 16){ //B
