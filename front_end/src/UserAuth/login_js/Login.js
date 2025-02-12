@@ -28,6 +28,6 @@ CreateAccountButton.addEventListener("click", (e) => {
 })
 DiscardButton.addEventListener("click", (e) => {
 	e.preventDefault();
-    window.location.assign("hhttps://snoaux248.github.io/Site/");
+    window.location.assign("https://snoaux248.github.io/Site/");
 })
 
