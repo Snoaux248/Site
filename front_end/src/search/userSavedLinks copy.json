@@ -1,0 +1,108 @@
+{
+  "users_saved_links": [
+    {
+      "url": "https://www.google.com/",
+      "title": "Google",
+      "background_color": "#f6f6f6",
+      "background_hover": "#ffffff",
+      "title_color": "#000000",
+      "title_hover": "#A7DDEE"
+    },
+    {
+      "url": "https://www.apple.com/",
+      "title": "Apple",
+      "background_color": "#f6f6f6",
+      "background_hover": "#ffffff",
+      "title_color": "#000000",
+      "title_hover": "#A7DDEE"
+    },
+    {
+      "url": "./",
+      "title": "System",
+      "background_color": "#f6f6f6",
+      "background_hover": "#ffffff",
+      "title_color": "#000000",
+      "title_hover": "#A7DDEE"
+    },
+    {
+      "url": "https://www.desmos.com/calculator",
+      "title": "Desmos",
+      "background_color": "#77bb41",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#77bb41"
+    },
+    {
+      "url": "https://webwork.math.ttu.edu/webwork2/spr24anpeacem2450s022/",
+      "title": "Web Work",
+      "background_color": "#2b81be",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#2b81be"
+    },
+    {
+      "url": "https://webwork.math.ttu.edu/webwork2/f24lchristem2360s021/",
+      "title": "Web Work",
+      "background_color": "#2b81be",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#2b81be"
+    },
+    {
+      "url": "https://www.cengage.com",
+      "title": "Cengage",
+      "background_color": "#2b81be",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#2b81be"
+    },
+    {
+      "url": "https://active.cognella.com/",
+      "title": "Cognella",
+      "background_color": "#2b81be",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#2b81be"
+    },
+    {
+      "url": "https://outlook.office.com/mail/",
+      "title": "TTU Email",
+      "background_color": "#2b81be",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#2b81be"
+    },
+    {
+      "url": "https://ttu.blackboard.com/ultra/institution-page",
+      "title": "Black Board",
+      "background_color": "#be38f3",
+      "background_hover": "#f6f6f6",
+      "title_color": "#f6f6f6",
+      "title_hover": "#be38f3"
+    },
+    {
+      "url": "https://app.tophat.com",
+      "title": "Top Hat",
+      "background_color": "#be38f3",
+      "background_hover": "#f6f6f6",
+      "title_color": "#f6f6f6",
+      "title_hover": "#be38f3"
+    },
+    {
+      "url": "https://www.youtube.com",
+      "title": "YouTube",
+      "background_color": "#d62424",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#d62424"
+    },
+    {
+      "url": "https://portal.texastech.edu/web/ttu/my-tech",
+      "title": "Raider Link",
+      "background_color": "#d62424",
+      "background_hover": "#ffffff",
+      "title_color": "#ffffff",
+      "title_hover": "#d62424"
+    }
+  ]
+}

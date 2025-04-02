@@ -44,6 +44,7 @@ function SmartClose(){
         SettingsDivState = 0;
     }
 }
+
 function Settings_Toggle(){
     if(SettingsDivState == 0){
         SmartClose();
@@ -174,5 +175,5 @@ function DirectConnect(page){
 
 document.getElementById("LoginButton").addEventListener("click", (e) =>{
     e.preventDefault();
-    window.location.assign('https://snoaux248.github.io/Site/front_end/src/UserAuth/Login.html');
+    window.location.assign('http://127.0.0.1:8000/Snow/Login');
 });

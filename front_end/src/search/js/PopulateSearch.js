@@ -1,31 +1,75 @@
 var DisplayFlag = function(){
     var Parent = this.parentNode;
-    if(this.innerHTML == "description"){
+    if(this.innerHTML === "description"){
+        this.innerHTML = "close";
         Parent.querySelector(".pageResultDisclaimer").style.right = "0%";
         Parent.querySelector(".pageResultInformation").style.opacity = "0";
         Parent.style.borderRadius = "10px";
-        this.innerHTML = "close";
         this.style.top = "5px";
         this.style.right = "5px";
-    }else if(this.innerHTML == "close"){
+
+        if(Parent.querySelector(".iframeResultButtonK")){
+            Parent.querySelector(".iframeResultButtonK").style.top = "5px";
+            Parent.querySelector(".iframeResultButtonK").style.right = "35px";
+        }
+    }else if(this.innerHTML === "close"){
+        this.innerHTML = "description";
         Parent.querySelector(".pageResultDisclaimer").style.right = "-100%";
         Parent.querySelector(".pageResultInformation").style.opacity = "1";
-        this.innerHTML = "description";
         Parent.style.borderRadius = "20px";
         this.style.top = "10px";
         this.style.right = "10px";
+
+        if(Parent.querySelector(".iframeResultButtonK")){
+            Parent.querySelector(".iframeResultButtonK").style.top = "10px";
+            Parent.querySelector(".iframeResultButtonK").style.right = "40px";
+        } 
+    }
+}
+
+var TheatreMode = function(){
+    var Parent = this.parentNode;
+    var PageResults = document.getElementById("PageResults");
+    var Col1 = document.getElementById("Col1");
+    var Col2 = document.getElementById("Col2");
+    var Col3 = document.getElementById("Col3");
+    if(this.innerHTML == 'fullscreen'){
+        this.innerHTML = "fullscreen_exit";
+        if(Parent.parentNode == document.getElementById("Col1")){
+            Parent.style.width = 100 * ((Col2.offsetWidth + Col1.offsetWidth + 20)/ Parent.offsetWidth) + "%";
+        }else if(Parent.parentNode == document.getElementById("Col2")){
+            Parent.style.left = - ((Col1.offsetWidth + Col2.offsetWidth + 20) - Parent.offsetWidth) + "px";
+            console.log(Col1.offsetWidth, Col2.offsetWidth, Col3.offsetWidth, 40, Parent.offsetWidth);
+            console.log(Col1.offsetWidth + Col2.offsetWidth + Col3.offsetWidth + 40);
+            Parent.style.width = 100 * (PageResults.offsetWidth / Parent.offsetWidth) + "%";
+        }else if(Parent.parentNode == document.getElementById("Col3")){
+            Parent.style.left = - ((Col2.offsetWidth + Col3.offsetWidth + 20) - Parent.offsetWidth) + "px";
+            Parent.style.width = 100 * ((Col2.offsetWidth + Col3.offsetWidth + 20)/ Parent.offsetWidth) + "%";
+        }
+        Parent.getElementsByClassName("graph")[0].style.aspectRatio = PageResults.offsetWidth + " / " + (document.getElementById("AfterEnter").offsetHeight - 100);
+    }else if(this.innerHTML == 'fullscreen_exit'){
+        this.innerHTML = "fullscreen";
+        Parent.style.left = "0px";
+        Parent.style.width = "100%";
+        Parent.getElementsByClassName("graph")[0].style.aspectRatio = "16 / 9";
     }
 }
 
 var pageResultButtonH = document.getElementsByClassName("pageResultButtonH");
-var pageResultButtonK = document.getElementsByClassName("pageResultButtonK");
+var iframeResultButtonK = document.getElementsByClassName("iframeResultButtonK");
+
 
 Array.from(pageResultButtonH).forEach(function(element) {
       element.addEventListener('click', DisplayFlag);
 });
-Array.from(pageResultButtonK).forEach(function(element) {
+Array.from(pageResultButtonH).forEach(function(element) {
       element.addEventListener('click', DisplayFlag);
 });
+Array.from(iframeResultButtonK).forEach(function(element) {
+    console.log(iframeResultButtonK);
+    element.addEventListener('click', TheatreMode);
+});
+
 window.addEventListener("resize", (e) =>{
 
     if(UIState == 0 && window.innerWidth >= 830){
@@ -33,62 +77,26 @@ window.addEventListener("resize", (e) =>{
     }else if(UIState == 1 && window.innerWidth < 830){
         ResizeSubUI();
     }
-    
+    CheckHyperlinkArrangment();
     if(PageState == 2){
         if(document.getElementById("LinksDiv").style.height == '0px'){
             if(window.innerWidth < 1110){
-                //document.getElementById('AfterEnter').style.height = window.innerHeight - (122) + 'px';
+                document.getElementById('AfterEnter').style.height = window.innerHeight - (122) + 'px';
             }else if(window.innerWidth >= 1110){
-                //document.getElementById("AfterEnter").style.height = window.innerHeight - (68) + 'px';
+                document.getElementById("AfterEnter").style.height = window.innerHeight - (68) + 'px';
             }
         }else{
             if(window.innerWidth < 1110){
-                //document.getElementById('AfterEnter').style.height = window.innerHeight - (244) + 'px';
+                document.getElementById('AfterEnter').style.height = window.innerHeight - (244) + 'px';
             }else if(window.innerWidth >= 1110){
-                //document.getElementById("AfterEnter").style.height = window.innerHeight - (188) + 'px';
+                document.getElementById("AfterEnter").style.height = window.innerHeight - (188) + 'px';
             }
         }
     }
 });
-/*
-if(window.innerWidth >= 830){
-    var v1 = document.getElementById("Col1").innerHTML;
-    var v2 = document.getElementById("Col2").innerHTML;
-    document.getElementById("Col1").innerHTML = v2;
-    document.getElementById("Col2").innerHTML = v1;
-}else if(window.innerWidth < 630){
-    var v2 = document.getElementById("Col1").innerHTML;
-    var v1 = document.getElementById("Col2").innerHTML;
-}*/
 
 function ResizeSubUI(){
-
-    Array.from(pageResultButtonK).forEach(function(element) {
-        element.removeEventListener('click', DisplayFlag);
-    });
     Array.from(pageResultButtonH).forEach(function(element) {
-        element.removeEventListener('click', DisplayFlag);
-    });
-    /*
-    if(window.innerWidth >= 830){
-        v2 = document.getElementById("Col1").innerHTML;
-        v1 = document.getElementById("Col2").innerHTML;
-        //document.getElementById("PageResults").style.gridTemplateColumns = "1fr 20px 1fr 20px 1fr";
-        document.getElementById("Col1").innerHTML = v1;
-        document.getElementById("Col2").innerHTML = v2;
-        UIState = 1;
-    }else if(window.innerWidth < 830){
-        v2 = document.getElementById("Col2").innerHTML;
-        v1 = document.getElementById("Col1").innerHTML;
-        //document.getElementById("PageResults").style.gridTemplateColumns = "auto";
-        document.getElementById("Col1").innerHTML = v2;
-        document.getElementById("Col2").innerHTML = v1;
-        UIState = 0;
-    }*/
-    Array.from(pageResultButtonH).forEach(function(element) {
-      element.addEventListener('click', DisplayFlag);
-    });
-    Array.from(pageResultButtonK).forEach(function(element) {
       element.addEventListener('click', DisplayFlag);
     });
 }

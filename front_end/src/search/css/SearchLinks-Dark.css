@@ -395,11 +395,12 @@ page{
 }
 
     .HyperLinkStyle{
+        display:inline-flex;
         padding: 1px ;
         margin: 5px 5px 5px 5px ;
         height: 110px ;
         width: 90px ;
-        
+    
         border-radius: 20px ;
         
         transition: .0s ;
@@ -409,6 +410,8 @@ page{
         left:auto;
         right:auto;
         text-align: center ;
+        justify-content:center;
+        
         z-index:auto;
         border:1px solid transparent;
         box-shadow: none ;
@@ -417,6 +420,9 @@ page{
         -webkit-user-select: none;
         user-select: none;
     
+    }
+    .HyperLinkStyle:hover .HyperLinkStyle:hover.LinkEditButton{
+        opacity: 1;
     }
     .hyperlinkstyle.dragging :where(.hyperlinktitle, i), .hyperlinkstyle.dragging :where(#LinksRedirect, i){
         opacity: 0;
@@ -444,7 +450,10 @@ page{
         }
 
         .hyperlinktitle{
+            position:absolute;
+            bottom:10px;
             margin: 0px ;
+
             color:#888;
             font-size: 15px ;
         }
@@ -452,7 +461,8 @@ page{
 
 
         #LinksRedirect{
-            
+            position:absolute;
+            top:10px;
             padding: 5px 10px 10px 10px ;
             margin: 0px 15px 10px 15px ;
             height: 45px ;
@@ -464,6 +474,7 @@ page{
             font-size: 45px ;
             font-family: sans-serif ;
             transition:.2s;
+
         }
 
         #LinksRedirect:hover{

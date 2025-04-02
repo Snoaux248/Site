@@ -30,7 +30,7 @@ var TakenUser = "Snow";
 var TakenEmail = "Flurries@snow.com";
 
 CreateAccountButton.addEventListener("click", (enter) => {
-	enter.preventDefault()
+	enter.preventDefault();
 	    //First Name checks
         if (FN.value == "") {
 		        Error_FN.style.opacity = 1;
@@ -100,6 +100,13 @@ CreateAccountButton.addEventListener("click", (enter) => {
 })
 const DiscardButton = document.getElementById("Cancel");
 DiscardButton.addEventListener("click", (enter) => {
-	enter.preventDefault()
-    window.location.assign("./Login");
+	enter.preventDefault();
+    if(history.length == 1){
+        window.location.assign("http://127.0.0.1:8000/Snow/Login");
+    }else{
+        window.history.back();
+    }
 })
+/*
+http://127.0.0.1:8000/Snow/CreateAccount
+*/

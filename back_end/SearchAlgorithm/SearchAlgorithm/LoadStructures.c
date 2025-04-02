@@ -213,7 +213,7 @@ void load_dictionary(void){
     }
     while(fgets(line, sizeof(line), file_path) != NULL){
         int atomic_property[18] = {0};
-        int_16 atomic = 0;
+        //int_16 atomic = 0;
         char definition[1024];
         char pos[20];
         char word[50];

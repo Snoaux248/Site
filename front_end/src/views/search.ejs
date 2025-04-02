@@ -3,24 +3,24 @@
     <head>
             <title></title>
             
-            <link rel="stylesheet" media="screen" href="search/css/NavMenu.css" type="text/css">
-            <link rel="stylesheet" media="screen" href="search/css/SearchLinks-Light.css" type="text/css" id="StyleSheetControl1">
-            <link rel="stylesheet" media="screen" href="search/css/PopulateSearch-Light.css" type="text/css" id="StyleSheetControl2">
-            
-            <link rel="stylesheet" href="Fonts/stylesheet.css" type="text/css" charset="utf-8">
+            <link rel="stylesheet" media="screen" href="/css/NavMenu.css" type="text/css">
+            <link rel="stylesheet" media="screen" href="/css/SearchLinks-Light.css" type="text/css" id="StyleSheetControl1">
+            <link rel="stylesheet" media="screen" href="/css/PopulateSearch-Light.css" type="text/css" id="StyleSheetControl2">
+            <link rel="stylesheet" href="/stylesheet.css" type="text/css" charset="utf-8">
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
             
-            <script defer src="search/js/PageGeneration.js"></script>
-            <script defer src="search/js/QuickLinks.js"></script>
-            <script defer src="search/js/PageLoad.js"></script>
+            <script defer src="/js/PageGeneration.js"></script>
+            <script defer src="/js/QuickLinks.js"></script>
+            <script defer src="/js/PageLoad.js"></script>
             
-            <script defer src="search/js/NavMenu.js"></script>
-            <script defer src="search/js/SearchLinks.js"></script>
-            <script defer src="search/js/SearchTest_DarkMode.js"></script>
-            <script defer src="search/js/PopulateSearch.js"></script>
-            <script defer src="search/js/Controller.js"></script>
+            <script defer src="/js/NavMenu.js"></script>
+            <script defer src="/js/SearchLinks.js"></script>
+            <script defer src="/js/SearchTest_DarkMode.js"></script>
+            <script defer src="/js/PopulateSearch.js"></script>
+            <script defer src="/js/Controller.js"></script>
+            <py-script src="/search/py/Dictionary.py"></py-script>
 
     </head>
     
@@ -55,7 +55,7 @@
         <div id="SearchAndLinks">
             <div id="SearchBar">
                 <button type="submit" id="SearchIcon1" class="SearchButton" onclick="">search</button>
-                <input type="text" id="Search" class="Search" placeholder="Search the Web" autocomplete="off" value="">
+                <input type="text" id="Search" class="Search" placeholder="Search the Web" autocomplete="off" value="<%= search %>">
                 <button type="submit" id="SearchIcon2" class="SearchButton" style="border-right:1px solid transparent; padding:0px; width:0px;">close</button>
                 <button type="submit" id="SearchIcon3" class="SearchButton" onclick="">mic</button>
             </div>
@@ -118,8 +118,8 @@
                 <div id="PageResults">
                 
                     <div id="Col1">
-                
-                        <div class="pageResultLink">
+                        <!--
+                        <div class="pageResult">
                             <div class="pageResultInformation">
                                 <div class="resultPadding"> 
                                     
@@ -139,7 +139,7 @@
                             <button class="pageResultButtonH">description</button>
                         </div>
                         
-                        <div class="pageResultLink">
+                        <div class="pageResult">
                             <div class="pageResultInformation">
                                 <div class="resultPadding">
                                     
@@ -159,7 +159,7 @@
                             <button class="pageResultButtonH">description</button>
                         </div>
                         
-                        <div class="pageResultLink">
+                        <div class="pageResult">
                             <div class="pageResultInformation">
                                 <div class="resultPadding">
                 
@@ -172,7 +172,7 @@
                             </div>
                             <button class="pageResultButtonH">description</button>
                         </div>
-                        <div class="pageResultLink">
+                        <div class="pageResult">
                             <div class="pageResultInformation">
                                 <div class="resultPadding">
                                         <a href="" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
@@ -189,11 +189,12 @@
                             </div>
                             <button class="pageResultButtonH">description</button>
                         </div>
+                        -->
                     </div>
                 
-                    <div></div>
                     <div id="Col2">
-                        <div class="pageResultKnowledge">
+                        <!--
+                        <div class="pageResult">
                             <div class="pageResultInformation">
                                 <div class="resultPadding">
                                     <h class="DeffWordSound">Definition of _____ </h>
@@ -214,11 +215,69 @@
                 
                                 </div>
                             </div>
-                            <button class="pageResultButtonK">description</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        -->
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/qvr7jg4xrq"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-3d" src="https://www.desmos.com/calculator/n6y2asualc"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
                         </div>
                     </div>
-                    <div></div>
                     <div id="Col3">
+                        <!--
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/9gy9qftdgy"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-3d" src="https://www.desmos.com/3d/"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        -->
                     </div>
                 </div>
                 

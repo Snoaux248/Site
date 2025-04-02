@@ -144,12 +144,12 @@ function ResultMerge(currentState){
     case 1:
 
       for(var i = 0; i < columnData.length; i++){
-        if(columnData[i].className == "pageResultKnowledge"){
+        if(columnData[i].getAttribute('type') == "definition"){
           document.querySelector("#Col1").appendChild(columnData[i]);
         }
       }
       for(var i = 0; i < columnData.length; i++){
-        if(columnData[i].className == "pageResultLink"){
+        if(columnData[i].getAttribute('type') == "hyperlink"){
           document.querySelector("#Col1").appendChild(columnData[i]);
         }
       }
@@ -161,18 +161,18 @@ function ResultMerge(currentState){
     case 2:
       
     for(var i = 0; i < columnData.length; i++){
-      if(columnData[i].className == "pageResultKnowledge"){
+      if(columnData[i].getAttribute('type') == "definition"){
         document.querySelector("#Col2").appendChild(columnData[i]);
-      }else if(columnData[i].className == "pageResultLink"){
+      }else if(columnData[i].getAttribute('type') == "hyperlink"){
         document.querySelector("#Col1").appendChild(columnData[i]);
       }
     }
       break;
     case 3:
       for(var i = 0; i < columnData.length; i++){
-        if(columnData[i].className == "pageResultKnowledge"){
+        if(columnData[i].className == "definition"){
           document.querySelector("#Col2").appendChild(columnData[i]);
-        }else if(columnData[i].className == "pageResultLink"){
+        }else if(columnData[i].getAttribute('type') == "hyperlink"){
           document.querySelector("#Col1").appendChild(columnData[i]);
         }
       }
@@ -204,7 +204,6 @@ function ResizeUI(){
               document.getElementById("AE").style.transition = "0s";
               document.getElementById("AE2").style.transition = "0s";
             }, 400 );
-            document.getElementById("Col3").style.display = "none";
             console.log("SearchBar set to substate: 2"); // just below top of screen
             console.log("Page Result height set to state: 2"); // adjusted height for search bar position
         }else if(window.innerWidth >= 830){
@@ -221,7 +220,6 @@ function ResizeUI(){
               document.getElementById("AE").style.transition = "0s";
               document.getElementById("AE2").style.transition = "0s";
             }, 400 );
-            document.getElementById("Col3").style.display = "grid";
             console.log("SearchBar set to substate: 1");  // at top of screen
             console.log("Page Result height set to state: 1"); // adjusted height for search bar position
         }
@@ -424,7 +422,7 @@ function LinksClear(){
 }
 
 function modifyURL(append){
-  window.history.replaceState('data', '234', 'search?key='+ append);
+  window.history.replaceState('data', '234', 'key?search='+ append);
 }
 function resetURL(){
   window.history.replaceState('data', '234', "./");
@@ -479,17 +477,23 @@ function Search_Commands(SearchString, display){
     for(var i = 1; i < 4; i++){
       document.getElementById("Col" + i).innerHTML = null;
     }
+    definitions_structure.clear_structure();
   }else if(array[0] == "ll"){
-    Load_Users_HyperLinks(FileTarget);
+    get_UsersSavedLinks();
     HyperLinksShow();
   }else if(array[0] == "zz"){
     zz();
+  }else if(array[0] == "g1"){
+    gen1();
+  }else if(array[0] == "g2"){
+    gen2();
   }
-  if(display === true){
+  if(display == true){
     document.querySelector("#DisplayedSearch").innerHTML = "Snow::Command::" + SearchString;
   }
   SetScroll();
 }
+
 var SelectedResult = -1;
 var DisplayedResults = -1;
 function autocomplete(inp, DataArray) {
@@ -585,7 +589,7 @@ function autocomplete(inp, DataArray) {
         search_function();
         if(document.getElementById("Search").value != ""){
           document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
-          //window.history.replaceState('data', '234', 'search?key='+ Search.value);
+          window.history.replaceState('data', '234', 'key?search='+ Search.value);
         }
         if(DisplayedResults > -1 && SelectedResult > -1){
           parent.childNodes[SelectedResult].id = "SelectedSearch";
@@ -632,28 +636,26 @@ function search_function(){
     .then(data => populate_page(data))
     .catch(error => console.error('Error:', error));
 }
+async function getURLInfo(SearchResult){
+  search_function(SearchResult);
+}
 
 const populate_page = function(returned_results){
   console.log(returned_results.stringify);
   if(document.getElementById("SearchIcon1").innerHTML == "search" && document.getElementById("Search").value != ""){
     Search_Commands("clear", false);
-    definitions_structure.clear_structure();
     document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
   }
   for(var i = 0; i < returned_results.length; i++){
+    console.log(returned_results.length);
     var existence = definitions_structure.compare(returned_results[i]);
     if(existence == false){
       definitions_structure.insert(returned_results[i], null);
-      generate_definition(returned_results[i].word,"Subject : undefined", returned_results[i].definition);
+      generate_definition(returned_results[i].word, "Subject: undefined", returned_results[i].definition);
+    }else{
+      console.log("collision with previous search array");
     }
   }
-  /*
-  var lines = returned_results.split("\n");
-  console.log(lines);
-  console.log(lines.length);
-  if(lines.length != '' && lines.length != ""){
-    generate_definition(document.getElementById("Search").value, "Subject: undefined", lines);
-  }*/
 }
 
 function AutoCompleteCreate(){
@@ -672,8 +674,8 @@ function AutoCompleteCreate(){
       parent.children[DisplayedResults-1].style.borderRadius = "0px";
     }
   }
-
 }
+
 function AutoCompleteKill(){
   document.getElementById("SearchSuggestions").innerHTML = "";
   SelectedResult = -1;

@@ -277,10 +277,7 @@ function Keyboard_Controls(buttonIndex){
       Keyboard_Secondary(2);
     }else if(keyStroke == 'Space'){
       document.querySelector('.Search').value += ' ';
-    }else if(keyStroke == 'Tab'){
-      let SSSS = document.getElementById("Search").value;
-      if(SSSS.at(0) == '/') Search_Commands(SSSS.slice(1, SSSS.length), true);
-    }else if(keyStroke == ''){
+    }else if(keyStroke == 'Esc'){
       hide_keyboard();
     }
   }else if(buttonIndex == 1 || buttonIndex == 16){ //B
@@ -443,6 +440,9 @@ function keyBoardControl(x){
     }
   }
 }
+
+
+
 
 class ControllerNav_Class{
   constructor(col_num){

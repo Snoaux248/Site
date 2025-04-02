@@ -86,24 +86,25 @@ page{
 #PageResults{
     position:relative;
     display:grid;
-    grid-template-columns: 4fr 20px 3fr 20px 3fr;
+    grid-template-columns: 4fr 3fr 3fr;
+    gap:20px;
     margin:10px;
     
     transition:.2s;
 }
 @media only screen and (max-width: 830px) and (min-width: 0px){
     #PageResults{
-        grid-template-columns: 1fr 0px;
+        grid-template-columns: 1fr;
     }
 }
 @media only screen and (max-width: 1400px) and (min-width: 830px){
     #PageResults{
-        grid-template-columns: 6fr 20px 5fr 0px;
+        grid-template-columns: 6fr 5fr;
     }
 }
 @media only screen and (max-width: 1800px) and (min-width: 1400px){
     #PageResults{
-        grid-template-columns: 3fr 20px 3fr 20px 3fr;
+        grid-template-columns: 3fr 3fr 3fr;
     }
 }
 #Col1{
@@ -124,7 +125,7 @@ page{
     left:auto;
     width:100%;
 }
-    .PageResultLink{
+    .PageResult{
         position:relative;
             left:0px;
 
@@ -148,17 +149,17 @@ page{
         user-select: text;
     }
 
-    .PageResultLink:hover{
+    .PageResult:hover{
         -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
         box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
         border:1px solid #232323;
     }
-    .pageResultLink.controllerSelect, .pageResultKnowledge.controllerSelect{
+    .PageResult.controllerSelect, .pageResultIframe.controllerSelect{
         -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
         box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
     }
 
-    .pageResultLink.controllerSelect:hover, .pageResultKnowledge.controllerSelect:hover{
+    .PageResult.controllerSelect:hover, .pageResultIframe.controllerSelect:hover{
         -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .7);
         box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .7);
     }
@@ -195,7 +196,7 @@ page{
         }
 
 
-        .pageResultButtonH, .pageResultButtonK{
+        .pageResultButtonH{
             position:absolute;
             top: 10px;
             right: 10px;
@@ -215,11 +216,31 @@ page{
             z-index:2;
             transition:.2s;
         }
-        .pageResultButtonH:hover, .pageResultButtonK:hover{
+        .iframeResultButtonK{
+            position:absolute;
+            top: 10px;
+            right: 40px;
+            
+            margin:0px;
+            padding:0px;
+            
+            border:none;
+            outline:none;
+            background-color:transparent;
+            
+            
+            font-family:'Material Icons';
+            font-size:20;
+            font-weight:normal;
+            color:#999;
+            z-index:2;
+            transition:.2s;
+        }
+        .pageResultButtonH:hover, .iframeResultButtonK{
             color:#A7DDEE;
         }
 
-    
+/*
 .PageResultKnowledge{
     position:relative;
         left:0px;
@@ -244,13 +265,13 @@ page{
     user-select: text;
 }
 
-.PageResultKnowledge:hover{
 
+.PageResultKnowledge:hover{
     -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
     box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
     border:1px solid #232323;
 }
-
+*/
 .resultPadding{
     margin:20px;
     padding:none;
@@ -258,6 +279,51 @@ page{
     min-height:50px;
     transition:.2s;
 }
+
+.PageResultIframe{
+    position:relative;
+        left:0px;
+
+    padding:auto;
+    margin:0px 0px 20px 0px;
+    
+    height:auto;
+    width:100%;
+    
+    background-color:#23232374;
+    border-radius:20px;
+    border:1px solid #373737;
+    
+    overflow:hidden;
+    transition:.2s;
+    z-index:-.5;
+
+    box-shadow: 0px 0px 4px 4px rgb(0, 0, 0, .15);
+    -webkit-touch-callout: unset;
+    -webkit-user-select: text;
+    user-select: text;
+}
+.PageResultIframe:hover{
+    -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
+    box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
+    border:1px solid #232323;
+}
+    .iframeResultPadding{
+        margin:5px;
+        padding:none;
+        width:auto;
+        min-height:50px;
+        transition:.2s;
+    }
+        .graph{
+            width:100%;
+            aspect-ratio:16/9;
+            border-radius:15px;
+            overflow:hidden;
+            border:none;
+        }
+
+
 
 
 

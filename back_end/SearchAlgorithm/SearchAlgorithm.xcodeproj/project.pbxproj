@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1737FC2D6ED12200225718 /* BuildKnowledgeBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 8F1737FB2D6ED11E00225718 /* BuildKnowledgeBase.c */; };
 		8FCA4B8A2D1B827C00B82295 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 8F3AAF832D0FE08900309CFC /* main.c */; };
 		8FCA4B8B2D1B827F00B82295 /* display.c in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA4B862D1B802100B82295 /* display.c */; };
 		8FCA4B8D2D1CA6C700B82295 /* LoadStructures.c in Sources */ = {isa = PBXBuildFile; fileRef = 8F3AAF8B2D0FE25000309CFC /* LoadStructures.c */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F1737FA2D6ED11E00225718 /* BuildKnowledgeBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BuildKnowledgeBase.h; path = SearchAlgorithm/BuildKnowledgeBase.h; sourceTree = "<group>"; };
+		8F1737FB2D6ED11E00225718 /* BuildKnowledgeBase.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = BuildKnowledgeBase.c; sourceTree = "<group>"; };
 		8F3AAF802D0FE08900309CFC /* SearchAlgorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SearchAlgorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3AAF832D0FE08900309CFC /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		8F3AAF8A2D0FE19900309CFC /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		8F3AAF772D0FE08900309CFC = {
 			isa = PBXGroup;
 			children = (
+				8F1737FA2D6ED11E00225718 /* BuildKnowledgeBase.h */,
 				8F3AAF8A2D0FE19900309CFC /* Header.h */,
 				8F3AAF822D0FE08900309CFC /* SearchAlgorithm */,
 				8F3AAF812D0FE08900309CFC /* Products */,
@@ -68,6 +72,7 @@
 				8FCA4B862D1B802100B82295 /* display.c */,
 				8F3AAF8B2D0FE25000309CFC /* LoadStructures.c */,
 				8F3AAF832D0FE08900309CFC /* main.c */,
+				8F1737FB2D6ED11E00225718 /* BuildKnowledgeBase.c */,
 			);
 			path = SearchAlgorithm;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F1737FC2D6ED12200225718 /* BuildKnowledgeBase.c in Sources */,
 				8FCA4B8D2D1CA6C700B82295 /* LoadStructures.c in Sources */,
 				8FCA4B8B2D1B827F00B82295 /* display.c in Sources */,
 				8FCA4B8A2D1B827C00B82295 /* main.c in Sources */,
@@ -260,6 +266,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6V567RUCCB;
 				ENABLE_HARDENED_RUNTIME = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-v";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;

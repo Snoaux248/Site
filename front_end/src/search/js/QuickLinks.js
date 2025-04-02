@@ -1,33 +1,3 @@
-
-var FileTarget2 = "./userWrittenLinks.txt";
-Rewrite_User_HyperLinks(FileTarget2);
-
-var CurrentLink = 5;
-
-async function Rewrite_User_HyperLinks(FileToWrite){
-    /*
-    const outFS = new FileSystemWritableFileStream();
-  
-      let response = await fetch(FileToWrite);
-      let data = await response.blob();
-      await response.body.pipeTo(FileToWrite);
-      const idk1 = data.createWritable();
-  */
-  
-    let line;
-    let paragraph = '';
-  
-      for(let i = 0; i < CurrentLink - 1; i++){
-        //line = Link_URL_Storage[i] + "|" + Link_Title_Storage[i] + "|" + Link_BG_Color_Storage[i] + "|" + Link_BGH_Color_Storage[i] + "|" + Link_T_Color_Storage[i] + "|" + Link_TH_Color_Storage[i] + "|\n";
-        paragraph += line;
-      }
-      console.log(paragraph);
-      /*
-      outFS.write(paragraph);
-      outFS.destroy;*/
-  }
-
-
 /*  Add Link
     Edit Link
     Remove Link
@@ -38,6 +8,7 @@ async function Rewrite_User_HyperLinks(FileToWrite){
 /* Link Dragging and Droping*/
 
 var LinkDragLocation;
+
 var StartDrag = function(){
   this.classList.add("dragging");
   this.style.backgroundColor = BorderColor; //from SearchTest_Dark.js
@@ -61,15 +32,6 @@ var QuickLinkReposition = function({pageX}){
 
 const sortableList = document.querySelector("#LinksDiv");
 const items = sortableList.querySelectorAll(".HyperLinkStyle");
-/*
-items.forEach(item => {
-    item.addEventListener("dragstart", () => {
-        // Adding dragging class to item after a delay
-        setTimeout(() => item.classList.add("dragging"), 0);
-    });
-    // Removing dragging class from item on dragend event
-    item.addEventListener("dragend", () => item.classList.remove("dragging"));
-});*/
 
 var initSortableList = (e) => {
     e.preventDefault();
@@ -85,6 +47,7 @@ var initSortableList = (e) => {
         return e.clientX <= sibling.offsetLeft + sibling.offsetWidth + sortableList.offsetLeft - 57;
     });
     // Inserting the dragging item before the found sibling
+    
     sortableList.insertBefore(draggingItem, nextSibling);
 }
 
@@ -100,7 +63,7 @@ var QuickLinkRedirect = function(){
   let location = [].indexOf.call(document.getElementsByClassName('hyperlinktitle'), this.parentNode.querySelector(".hyperlinktitle"));
   location--;
   let c = this.parentNode.querySelector("#LinksRedirect");
-  window.location.assign(c.getAttribute("url"));
+  window.location.assign(QuickLinks_structure.structure[location].url);
 }
 
 var QuickLinkHover = function(){
@@ -109,8 +72,8 @@ var QuickLinkHover = function(){
   location--;
 
   let c = p.querySelector("#LinksRedirect");
-  c.style.color = c.getAttribute("th_c");
-  c.style.backgroundColor = c.getAttribute("bgh_c");
+  c.style.color = QuickLinks_structure.structure[location].title_hover;
+  c.style.backgroundColor = QuickLinks_structure.structure[location].background_hover;
 }
 
 var QuickLinkHoverOut = function(){
@@ -119,33 +82,33 @@ var QuickLinkHoverOut = function(){
   location--;
 
   let c = p.querySelector("#LinksRedirect");
-  c.style.color = c.getAttribute("t_c");
-  c.style.backgroundColor = c.getAttribute("bg_c");
+  c.style.color = QuickLinks_structure.structure[location].title_color;
+  c.style.backgroundColor = QuickLinks_structure.structure[location].background_color;
 }
-
-
 
 var QuickLinkRemove = function(){
 
   let location = [].indexOf.call(document.getElementsByClassName('hyperlinktitle'), this.parentNode.parentNode.querySelector(".hyperlinktitle"));
   location--;
   let p = document.getElementById("LinksDiv");
-  parent2 = this.parentNode.parentNode;
+  parent2 = this.parentNode;
   parent2.style.transition = '.2s';
   parent2.style.width = "0px";
   parent2.style.opacity = 0;
   parent2.style.margin = "0px 10px 0px 0px";
   parent2.style.padding = "0px";
-
   CurrentLink--;
-  CheckHyperlinkArrangment()
+
+  CheckHyperlinkArrangment();
+  QuickLinks_structure.remove_by_location(location);
+  send_UsersSavedLinks();
 
   setTimeout(() => {
-    document.getElementsByClassName("LinkEditButton")[location].removeEventListener('click', QuickLinkEdit);
-    document.getElementsByClassName("LinkDeleteButton")[location].removeEventListener('click', QuickLinkRemove);
-    document.getElementById("LinksDiv").children[location+1].querySelector("#LinksRedirect").removeEventListener('click', QuickLinkRedirect);
-    document.getElementById("LinksDiv").children[location+1].querySelector("#LinksRedirect").removeEventListener('mouseover', QuickLinkHover);
-    document.getElementById("LinksDiv").children[location+1].querySelector("#LinksRedirect").removeEventListener('mouseout', QuickLinkHoverOut);
+    parent2.getElementsByClassName("LinkEditButton")[0].removeEventListener('click', QuickLinkEdit);
+    parent2.getElementsByClassName("LinkDeleteButton")[0].removeEventListener('click', QuickLinkRemove);
+    parent2.querySelector("#LinksRedirect").removeEventListener('click', QuickLinkRedirect);
+    parent2.querySelector("#LinksRedirect").removeEventListener('mouseover', QuickLinkHover);
+    parent2.querySelector("#LinksRedirect").removeEventListener('mouseout', QuickLinkHoverOut);
     p.removeChild(parent2);
     document.getElementById("LinksDiv").style.width = HyperlinkDivWidth;
     document.getElementById("LinksDiv").style.height = HyperlinkDivHeight;
@@ -163,36 +126,29 @@ var QuickLinkAdd = function(){
   console.log(CurrentLink);
   SearchBarHide();
   document.getElementById("LinkTitle").innerHTML = "Add Link";
+  CurrentLocation = QuickLinks_structure.length;
 }
 
-var CurrentLocation = 0;
+
 var QuickLinkEdit = function(){
   if(PageState == 1){
     HyperLinksHide();
   }
   document.getElementById("SearchBar").style.border = "0px solid transparent";
-  let location = [].indexOf.call(document.getElementsByClassName('hyperlinktitle'), this.parentNode.parentNode.querySelector(".hyperlinktitle"));
+  let location = [].indexOf.call(document.getElementsByClassName('hyperlinktitle'), this.parentNode.querySelector(".hyperlinktitle"));
   location--;
 
-  /*document.getElementById("LinkTitle").innerHTML = "Edit Link";
-  document.getElementById("LinkAddTitle").value = Quicklink_Storage[location].title;
-  document.getElementById("LinkAddURL").value = Quicklink_Storage[location].url;
-  
-  document.getElementById("LinkTColorPicker").value = Quicklink_Storage[location].tc;
-  document.getElementById("LinkTHColorPicker").value = Quicklink_Storage[location].thc;
-  document.getElementById("LinkBGColorPicker").value = Quicklink_Storage[location].bgc;
-  document.getElementById("LinkBGHColorPicker").value = Quicklink_Storage[location].bghc;*/
-
   document.getElementById("LinkTitle").innerHTML = "Edit Link";
-  let c = this.parentNode.parentNode.querySelector("#LinksRedirect");
+  let c = this.parentNode.querySelector("#LinksRedirect");
 
-  document.getElementById("LinkAddTitle").value = this.parentNode.parentNode.querySelector(".hyperlinktitle").innerHTML;
-  document.getElementById("LinkAddURL").value = c.getAttribute("url")
-  
-  document.getElementById("LinkTColorPicker").value = c.getAttribute("t_c")
-  document.getElementById("LinkTHColorPicker").value = c.getAttribute("th_c")
-  document.getElementById("LinkBGColorPicker").value = c.getAttribute("bg_c")
-  document.getElementById("LinkBGHColorPicker").value = c.getAttribute("bgh_c")
+  document.getElementById("LinkAddTitle").value = this.parentNode.querySelector(".hyperlinktitle").innerHTML;
+
+  document.getElementById("LinkAddTitle").value = QuickLinks_structure.structure[location].title;
+  document.getElementById("LinkAddURL").value = QuickLinks_structure.structure[location].url;
+  document.getElementById("LinkTColorPicker").value = QuickLinks_structure.structure[location].title_color;
+  document.getElementById("LinkTHColorPicker").value = QuickLinks_structure.structure[location].title_hover;
+  document.getElementById("LinkBGColorPicker").value = QuickLinks_structure.structure[location].background_color;
+  document.getElementById("LinkBGHColorPicker").value = QuickLinks_structure.structure[location].background_hover;
 
   LinksAddShow();
   SearchBarHide();
@@ -240,35 +196,58 @@ document.getElementById("CreateLinkB").addEventListener("click", (e) => {
   p = document.getElementById("LinksDiv");
   
   let CreatorTitle = document.getElementById("LinkTitle").innerHTML;
-  if(TitleError == false && URLError == false){
-
-    if(CreatorTitle == "Edit Link"){
-
-      p.children[CurrentLocation + 1].children[1].setAttribute("url", HyperLinkURL.value);
-      p.children[CurrentLocation + 1].children[1].setAttribute("t_c", HyperLinkTitleColor);
-      p.children[CurrentLocation + 1].children[1].setAttribute("th_c", HyperLinkTitleHoverColor);
-      p.children[CurrentLocation + 1].children[1].setAttribute("bg_c", HyperLinkBackgroundColor);
-      p.children[CurrentLocation + 1].children[1].setAttribute("bgh_c", HyperLinkBackgroundHoverColor);
-
-      let char = HyperLinkTitle.value.at(0).toUpperCase();
-      let c = p.querySelector('#LinksRedirect');
-      p.children[CurrentLocation + 1].children[1].style.color = HyperLinkTitleColor;
-      p.children[CurrentLocation + 1].children[1].style.backgroundColor = HyperLinkBackgroundColor;
-      p.children[CurrentLocation + 1].children[1].innerHTML = char;
-      p.children[CurrentLocation + 1].children[2].innerHTML =  HyperLinkTitle.value;
-      
-    }else if(CreatorTitle == "Add Link"){
-      CurrentLink++;
-      CheckHyperlinkArrangment();
-      BuildQuickLink(HyperLinkTitle.value, HyperLinkURL.value, HyperLinkTitleColor, HyperLinkTitleHoverColor, HyperLinkBackgroundColor, HyperLinkBackgroundHoverColor, CurrentLink+1);
-    }
-    document.getElementById("LinkTitle").innerHTML = "inactive";
-    LinksAddHide();
-    HyperLinksShow();
-    SearchBarShow();
-    LinksClear();
-    //document.getElementById("LinkTitle").innerHTML = "inactive";
+  if(TitleError == true && URLError == true){
+    console.log("Invalid Hyperlink addition or modification");
+    return;
   }
+
+  if(CreatorTitle == "Edit Link"){
+
+    let char = HyperLinkTitle.value.at(0).toUpperCase();
+    let c = p.querySelector('#LinksRedirect');
+    p.children[CurrentLocation + 1].children[2].style.color = HyperLinkTitleColor;
+    p.children[CurrentLocation + 1].children[2].style.backgroundColor = HyperLinkBackgroundColor;
+    p.children[CurrentLocation + 1].children[2].innerHTML = char;
+    p.children[CurrentLocation + 1].children[3].innerHTML =  HyperLinkTitle.value;
+
+
+    QuickLinks_structure.remove_by_location(CurrentLocation);
+    var new_link = {
+      'title':HyperLinkTitle.value, 
+      'url':HyperLinkURL.value, 
+      'title_color':HyperLinkTitleColor, 
+      'title_hover': HyperLinkTitleHoverColor, 
+      'background_color':HyperLinkBackgroundColor, 
+      'background_hover':HyperLinkBackgroundHoverColor
+    };
+
+    console.log("CurrentLocation", CurrentLocation);
+    QuickLinks_structure.insert(new_link, CurrentLocation);
+    send_UsersSavedLinks();
+  }else if(CreatorTitle == "Add Link"){
+    CurrentLink++;
+
+    CheckHyperlinkArrangment();
+    var new_link = {
+      'title':HyperLinkTitle.value, 
+      'url':HyperLinkURL.value, 
+      'title_color':HyperLinkTitleColor, 
+      'title_hover': HyperLinkTitleHoverColor, 
+      'background_color':HyperLinkBackgroundColor, 
+      'background_hover':HyperLinkBackgroundHoverColor
+    };
+    console.log("CurrentLocation", CurrentLink);
+    QuickLinks_structure.insert(new_link, CurrentLink);
+    BuildQuickLink(new_link, CurrentLink);
+    send_UsersSavedLinks();
+  }
+    
+  document.getElementById("LinkTitle").innerHTML = "inactive";
+  LinksAddHide();
+  HyperLinksShow();
+  SearchBarShow();
+  LinksClear();
+    //document.getElementById("LinkTitle").innerHTML = "inactive";
 })
 
 
@@ -283,25 +262,25 @@ function CheckHyperlinkArrangment(){
   if(PageState == 1){
       if(window.innerWidth >= 1040){
         if(CurrentLink >= 9){
-          HyperlinkDivWidth = 1040;
+          HyperlinkDivWidth = 1040 + 5;
         }else if(CurrentLink < 9){
-          HyperlinkDivWidth = (CurrentLink + 2) * 104;
+          HyperlinkDivWidth = (CurrentLink+1) * 104 + 1;
         }
       }else if(window.innerWidth < 1040){
-        var num = Math.floor(window.innerWidth / 104);
+        var num = Math.floor(window.innerWidth / 104 + 1);
         if((CurrentLink + 1) > num){
           HyperlinkDivWidth = 104 * num;
         }else{
-          HyperlinkDivWidth = 104 * (CurrentLink + 1);
+          HyperlinkDivWidth = 104 * (CurrentLink);
         }
       }
-      //console.log(PageState, window.innerWidth, CurrentLink, HyperlinkDivWidth);
+      console.log(PageState, window.innerWidth, CurrentLink, HyperlinkDivWidth);
   }else if(PageState == 2){
       num = Math.floor(window.innerWidth / 104);
-      if((CurrentLink+1) >= num){
-        HyperlinkDivWidth = (num) * 104;
-      }else if((CurrentLink + 1) < num){
-        HyperlinkDivWidth = (CurrentLink +2) * 104;
+      if((CurrentLink+1) > num){
+        HyperlinkDivWidth = (num) * 104 + CurrentLink / 3 * 2;
+      }else if((CurrentLink + 1) <= num){
+        HyperlinkDivWidth = (CurrentLink+1) * 104 + CurrentLink  / 3 * 2;
       }
       //console.log(num, CurrentLink+1, HyperlinkDivWidth);
   }
@@ -310,10 +289,10 @@ function CheckHyperlinkArrangment(){
   //height
   if(PageState == 1){
     if(window.innerWidth >= 1040){
-      var num = Math.floor((CurrentLink +1)/10) + 1;
+      var num = Math.floor((CurrentLink)/10) + 1;
       HyperlinkDivHeight = (num * 124);
     }else if(window.innerWidth < 1040){
-      var num = Math.floor((CurrentLink + 1)/Math.floor(window.innerWidth / 104)) + 1;
+      var num = Math.floor((CurrentLink)/Math.floor(window.innerWidth / 104)) + 1;
       HyperlinkDivHeight = (num * 124);
     }
     document.getElementById("LinksDiv").style.height = HyperlinkDivHeight + "px";
@@ -321,37 +300,17 @@ function CheckHyperlinkArrangment(){
     HyperlinkDivHeight = 124;
   }
   
-  if(CurrentLink == 28){
+  if(CurrentLink == 29){
     setTimeout(() => {
       document.getElementsByClassName("HyperLinkStyle")[0].style.width = "90px";
       document.getElementsByClassName("HyperLinkStyle")[0].style.margin = "0px 5px 10px 5px";
       document.getElementsByClassName("HyperLinkStyle")[0].style.padding = "0px";
     }, 100 );
-  }else if(CurrentLink == 29){
-    document.getElementsByClassName("HyperLinkStyle")[0].style.width = "0px";
-    document.getElementsByClassName("HyperLinkStyle")[0].style.margin = "0px";
-    document.getElementsByClassName("HyperLinkStyle")[0].style.padding = "0px";
+  }else if(CurrentLink == 30){
+    setTimeout(() => {
+      document.getElementsByClassName("HyperLinkStyle")[0].style.width = "0px";
+      document.getElementsByClassName("HyperLinkStyle")[0].style.margin = "0px";
+      document.getElementsByClassName("HyperLinkStyle")[0].style.padding = "0px";
+    }, 100 );
   }
 }
-
-
-/*new storage solution that is incomplete*/
-/*
-var Quicklink_Storage = [];
-
-function Quicklink(Title, Url, T_Color, TH_Color, BG_Color, BGH_Color){
-  this.title = Title;
-  this.url = Url;
-  this.tc = T_Color;
-  this.thc = TH_Color;
-  this.bgc = BG_Color;
-  this.bghc = BGH_Color;
-  console.log(this.title, this.url, this.tc, this.thc, this.bgc, this.bghc);
-}
-function NewBuildQuickLinks(Title, Url, T_Color, TH_Color, BG_Color, BGH_Color){
-
-  var newLink = new Quicklink(Title, Url, T_Color, TH_Color, BG_Color, BGH_Color);
-  Quicklink_Storage.push(newLink);
-}
-
-NewBuildQuickLinks('Title', 'Url', 'T_Color', 'TH_Color', 'BG_Color', 'BGH_Color');*/

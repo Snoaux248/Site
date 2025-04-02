@@ -1,0 +1,27 @@
+
+text: the quick fox jumped over the lazy dog
+class: phrase
+format: plain
+
+text: food: the things that you eat
+class: definition
+format: mixed
+
+text: pythagorean theorem: a^2 + b^2 = c^2
+class: theorem
+format: complex
+
+equation: (1x+2)^2 = 0
+class: math
+
+equation: A + BC'
+class: logic
+
+equation: F = MA
+class: physics
+
+reference: https://www.example.com
+class: offsite
+
+reference: calculus2 chapter_1 id 12345
+class: onsite

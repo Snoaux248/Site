@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const url = require('url');
 const fs = require('fs');
 const Router = express.Router();
 const util = require('util');
@@ -15,26 +16,36 @@ exec("./back_end/exec", (error, stdout, stderr) =>{
         console.log(stderr);
     }
 });*/
-
-//console.clear();
 const run_c = require('./back_end/build/Release/search_2');
+const { channel } = require('diagnostics_channel');
 console.log("Preparing dictionary... ", run_c.initialize_dictionary());
-//console.log(run_c.add(3, 4));
-//console.log(run_c.search("Hello"));
 
 
 const port = 8000
-
 const app = express();
+app.set('views', path.join(__dirname, '/front_end/src/views'))
+app.set('view engine', 'ejs');
 
 app.listen(port, () =>{
     console.log("app is started on port", port);
 });
 
 app.get('/Snow/Search',  (req, res) => {
-    res.sendFile(path.join(__dirname, '/front_end/src/search.html'));
+    console.log("DefaultView");
+
+    res.render('search', {search: ""});
     app.use(express.static(path.join(__dirname, '/front_end/src/search')));
     app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
+});
+
+app.get('/Snow/Search/:searchquery', (req, res) => {
+    console.log("ResultView");
+    const searchKeyValue = req.query;
+
+    res.render('search', {search: searchKeyValue.search});
+    app.use(express.static(path.join(__dirname, '/front_end/src/search')));
+    app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
+    
 });
 
 app.get('/Snow/Search/:request',  (req, res) => {
@@ -66,7 +77,6 @@ app.use(express.json());
 app.post('/api/returnsearch/', (req, res) => {
     const new_query = req.body;
     //check if querry is duplicate
-    console.clear();
     console.log("Preparing serach for...");
     console.log(new_query.data.search);
 
@@ -76,4 +86,29 @@ app.post('/api/returnsearch/', (req, res) => {
     //send json back to front end
     console.log(util.inspect(search_results, false, null, true));
     res.json(search_results);
+})
+
+
+
+
+app.post('/api/fetchUsersLinks/', (req, res) => {
+    //implement user checks
+    res.sendFile(path.join(__dirname, '/front_end/src/search/userSavedLinks.json'));
+})
+
+app.post('/api/sendUsersLinks/', (req, res) => {
+    //implement user checks
+    const saved_Links = JSON.stringify(req.body, null, '  ');
+    const filePath = path.join(__dirname, '/front_end/src/search/userSavedLinks.json');
+
+    console.log("trying to write to file");
+    fs.writeFile(filePath, saved_Links, (err) => {
+         if(err) {
+            console.error('An error occurred:', err);
+            res.json({'return':'Recieved, Fail'});
+        } else {
+            console.log('File written successfully!');
+            res.json({'return':'Recieved, success'});
+        }
+    });
 })

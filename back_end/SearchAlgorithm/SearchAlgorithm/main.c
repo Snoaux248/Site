@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "../Header.h"
-
+#include "BuildKnowledgeBase.h"
 
 
 void insert_word(struct sentence_info **head, struct word *insert){
@@ -336,7 +336,8 @@ int main(int argc, const char * argv[]){
         printf("1. Search\n");
         printf("2. Load Dictionary\n");
         printf("3. Retrieve definitions\n");
-        printf("4. Create types\n");
+        printf("4. #Create types\n");
+        printf("5. test read file\n");
         printf("0. Quit\n");
         scanf("%d[^\n]", &choice);
         scanf("%*c");
@@ -370,6 +371,9 @@ int main(int argc, const char * argv[]){
             case 4:
                 //load_types();
                 
+            break;
+            case 5:
+                test_read_file();
             break;
             default:
                 quit = 1;
