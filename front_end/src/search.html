@@ -1,0 +1,362 @@
+<html>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+            <title></title>
+            
+            <link rel="stylesheet" media="screen" href="search/css/NavMenu.css" type="text/css">
+            <link rel="stylesheet" media="screen" href="search/css/SearchLinks-Light.css" type="text/css" id="StyleSheetControl1">
+            <link rel="stylesheet" media="screen" href="search/css/PopulateSearch-Light.css" type="text/css" id="StyleSheetControl2">
+            <link rel="stylesheet" href="/stylesheet.css" type="text/css" charset="utf-8">
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+            
+            <script defer src="search/js/PageGeneration.js"></script>
+            <script defer src="search/js/QuickLinks.js"></script>
+            <script defer src="search/js/PageLoad.js"></script>
+            
+            <script defer src="search/js/NavMenu.js"></script>
+            <script defer src="search/js/SearchLinks.js"></script>
+            <script defer src="search/js/SearchTest_DarkMode.js"></script>
+            <script defer src="search/js/PopulateSearch.js"></script>
+            <script defer src="search/js/Controller.js"></script>
+            <py-script src="/search/py/Dictionary.py"></py-script>
+
+    </head>
+    
+    <body>
+        <div>
+            <div id="NavMenuHolder">
+                <div id="NavOptions">
+                    <button id="PageButton" class="navb"> apps</button>
+                    <button id="LoginButton" class="navb"> Login </button>
+                    <button id="SettingsButton" class="navb"> settings</button>
+                    <button id="AccountButton" class="navb" style="display:none;"> person </button>
+                </div>
+            
+                <div id="NavSubPages">
+                    <button id="SearchRedirect" class="cpageredirect"> Search </button>
+                    <button id="StreamRedirect" class="pageredirect"> Stream </button>
+                    <button id="ImagesRedirect" class="pageredirect"> Images </button>
+                    <button id="VideosRedirect" class="pageredirect" onclick="DirectConnect(2)" > Videos </button>
+                
+                </div>
+                <div id="NavSubSettings">
+                    <button id="SettingsRedirect" class="cpageredirect"> Settings </button>
+                    <button id="DarkmodeToggle" class="pageredirect"> Darkmode </button>
+                    <button id="Exctra" class="pageredirect"> Exctra </button>
+
+                </div>
+            
+            </div>
+        </div>
+        
+        
+        <div id="SearchAndLinks">
+            <div id="SearchBar">
+                <button type="submit" id="SearchIcon1" class="SearchButton" onclick="">search</button>
+                <input type="text" id="Search" class="Search" placeholder="Search the Web" autocomplete="off" value="<%= search %>">
+                <button type="submit" id="SearchIcon2" class="SearchButton" style="border-right:1px solid transparent; padding:0px; width:0px;">close</button>
+                <button type="submit" id="SearchIcon3" class="SearchButton" onclick="">mic</button>
+            </div>
+            <div id="SearchSuggestions">
+                
+            </div>
+            
+            <div id="LinksCreater">
+                
+                <p id="LinkTitle">inactive</p>
+                
+                <div class="linklineholder">
+                    <p class="linktext" style="display:inline;">Title:</p>
+                    <input type="text" id="LinkAddTitle" class="linkce" placeholder="Snow" autocomplete="off">
+                    <button type="submit" class="linksclearicon" onclick="ClearTitle()">close</button>
+                </div>
+                <div class="linklineholder">
+                        <p class="linktext" style="display:inline;">URL:</p>
+                        <input type="text" id="LinkAddURL" class="linkce" placeholder="example.snow.com" autocomplete="off">
+                        <button type="submit" class="linksclearicon" onclick="ClearURL()">close</button>
+                </div>
+                
+                <div class="linkbuttonholder">
+                    <input type="color" id="LinkTColorPicker" class="lb" value="#000000">
+                    <input type="color" id="LinkBGColorPicker" class="lb" value="#f6f6f6">
+                    <button type="submit" id="DiscardB" class="linkbutton" onclick="LinksCancel()">Discard</button>
+                    <button type="submit" id="CreateLinkB" class="linkbutton">Save</button>
+                    <input type="color" id="LinkTHColorPicker" class="lb" value="#A7DDEE">
+                    <input type="color" id="LinkBGHColorPicker" class="lb" value="#ffffff">
+                </div>
+                    
+            </div>
+        </div>
+        <page>
+            <div id="PageTitleMain">
+                <p id="TitleBig">Search</p>
+            </div>
+                
+            <div id="PageTitleSecondary">
+                <p id="TitleSmall">Snow Search</p>
+            </div>
+            
+            <div id="LinksDiv">
+
+
+            </div> <!--End seatch 1links-->
+
+
+            <div id="AE"></div>
+            <div id="AE2"></div>
+
+
+            <div id="AfterEnter">
+                <div id="PRpreview">
+                    <h id="DisplayedSearch"> Result</h>
+                        </br>
+                    <h id="AlternateSearchOption"> Alternate Result</h>
+                        </br>
+                </div>
+                <div id="PageResults">
+                
+                    <div id="Col1">
+                        <!--
+                        <div class="pageResult">
+                            <div class="pageResultInformation">
+                                <div class="resultPadding"> 
+                                    
+                                        <a href="https:/www.google.com" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
+                                    
+                                <p class="PagePublish">Published: 12/12/2020</p>
+                                <p class="PageDescription">Description: sagittis aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    id semper risus in. Sit amet dictum sit amet. Nunc vel risus commodo </p>
+                                <p class="keywords">Found Keywords: 1,2,3,4</p>
+                                <p class="Mkeywords">Missing Keywords: 5,6,7,8</p>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        
+                        <div class="pageResult">
+                            <div class="pageResultInformation">
+                                <div class="resultPadding">
+                                    
+                                        <a href="www.apple.com" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
+                                    
+                                <p class="PagePublish">Published: 12/12/2020</p>
+                                <p class="PageDescription">Description: sagittis aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    id semper risus in. Sit amet dictum sit amet. Nunc vel risus commodo </p>
+                                <p class="keywords">Found Keywords: 1,2,3,4</p>
+                                <p class="Mkeywords">Missing Keywords: 5,6,7,8</p>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        
+                        <div class="pageResult">
+                            <div class="pageResultInformation">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        <div class="pageResult">
+                            <div class="pageResultInformation">
+                                <div class="resultPadding">
+                                        <a href="" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
+                                <p class="PagePublish">Published: 12/12/2020</p>
+                                <p class="PageDescription">Description: sagittis aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    id semper risus in. Sit amet dictum sit amet. Nunc vel risus commodo </p>
+                                <p class="keywords">Found Keywords: 1,2,3,4</p>
+                                <p class="Mkeywords">Missing Keywords: 5,6,7,8</p>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        -->
+                    </div>
+                
+                    <div id="Col2">
+                        <!--
+                        <div class="pageResult">
+                            <div class="pageResultInformation">
+                                <div class="resultPadding">
+                                    <h class="DeffWordSound">Definition of _____ </h>
+                
+                                    <p class="deffWordIn">_____ in Math:</p>
+                                    <p class="WordDeff">- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse     cillum    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non    proident,    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p class="WordSyn"> Synonyms: </p>
+            
+                                    <p class="deffWordIn">_____ in Art:</p>
+                                    <p class="WordDeff">- Vulputate sapien nec sagittis aliquam malesuada bibendum arcu           vitae. Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in           mollis nunc sed id semper risus in. Sit amet dictum sit amet. Nunc vel  risus        commodo viverra maecenas</p>
+                                    <p class="WordSyn">Synonyms: </p>
+            
+                                    <p class="etymology">Etymology of _____</p>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        -->
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/qvr7jg4xrq"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-3d" src="https://www.desmos.com/calculator/n6y2asualc"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                    </div>
+                    <div id="Col3">
+                        <!--
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/9gy9qftdgy"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        <div class="pageResultIframe">
+                            <div class="pageResultInformation">
+                                <div class="iframeResultPadding">
+                                    <iframe class="graph" class="graph-3d" src="https://www.desmos.com/3d/"></iframe>
+                                </div>
+                            </div>
+                            <div class="pageResultDisclaimer">
+                                <div class="resultPadding">
+                
+                                </div>
+                            </div>
+                            <button class="iframeResultButtonK">fullscreen</button>
+                            <button class="pageResultButtonH">description</button>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                
+            </div>
+            <div class="keyboard">
+                <div class="keyrow">
+                    <div class="key"><p>Esc</p></div>
+                    <div class="key"><p>!</p><p>1</p></div>
+                    <div class="key"><p>@</p><p>2</p></div>
+                    <div class="key"><p>#</p><p>3</p></div>
+                    <div class="key"><p>$</p><p>4</p></div>
+                    <div class="key"><p>%</p><p>5</p></div>
+                    <div class="key"><p>^</p><p>6</p></div>
+                    <div class="key"><p>&</p><p>7</p></div>
+                    <div class="key"><p>*</p><p>8</p></div>
+                    <div class="key"><p>(</p><p>9</p></div>
+                    <div class="key"><p>)</p><p>0</p></div>
+                    <div class="key"><p>_</p><p>-</p></div>
+                    <div class="key"><p>+</p><p>=</p></div>
+                    <div class="key"><p>Delete</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Tab</p></div>
+                    <div class="key"><p>Q</p><p>q</p></div>
+                    <div class="key"><p>W</p><p>w</p></div>
+                    <div class="key"><p>E</p><p>e</p></div>
+                    <div class="key"><p>R</p><p>r</p></div>
+                    <div class="key"><p>T</p><p>t</p></div>
+                    <div class="key"><p>Y</p><p>y</p></div>
+                    <div class="key"><p>U</p><p>u</p></div>
+                    <div class="key"><p>I</p><p>i</p></div>
+                    <div class="key"><p>O</p><p>o</p></div>
+                    <div class="key"><p>P</p><p>p</p></div>
+                    <div class="key"><p>{</p><p>[</p></div>
+                    <div class="key"><p>}</p><p>]</p></div>
+                    <div class="key"><p>|</p><p>\</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>CapsLock</p></div>
+                    <div class="key"><p>A</p><p>a</p></div>
+                    <div class="key"><p>S</p><p>s</p></div>
+                    <div class="key"><p>D</p><p>d</p></div>
+                    <div class="key"><p>F</p><p>f</p></div>
+                    <div class="key controllerSelect"><p>G</p><p>g</p></div>
+                    <div class="key"><p>H</p><p>h</p></div>
+                    <div class="key"><p>J</p><p>j</p></div>
+                    <div class="key"><p>K</p><p>k</p></div>
+                    <div class="key"><p>L</p><p>l</p></div>
+                    <div class="key"><p>:</p><p>;</p></div>
+                    <div class="key"><p>"</p><p>'</p></div>
+                    <div class="key"><p>Enter</p><p>Return</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Shift</p></div>
+                    <div class="key"><p>Z</p><p>z</p></div>
+                    <div class="key"><p>X</p><p>x</p></div>
+                    <div class="key"><p>C</p><p>c</p></div>
+                    <div class="key"><p>V</p><p>v</p></div>
+                    <div class="key"><p>B</p><p>b</p></div>
+                    <div class="key"><p>N</p><p>n</p></div>
+                    <div class="key"><p>M</p><p>m</p></div>
+                    <div class="key"><p>,</p><p>,</p></div>
+                    <div class="key"><p>.</p><p>.</p></div>
+                    <div class="key"><p>/</p><p></p></div>
+                    <div class="key"><p>?</p><p></p></div>
+                    <div class="key"><p>Shift</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Fn</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Cmd</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Space</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Fn</p></div>
+                </div>
+            </div>
+        </page>
+        
+    </body>
+</html>
