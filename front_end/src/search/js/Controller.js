@@ -279,6 +279,12 @@ function Keyboard_Controls(buttonIndex){
       document.querySelector('.Search').value += ' ';
     }else if(keyStroke == 'Esc'){
       hide_keyboard();
+    }else if(keyStroke == 'Tab'){
+      var SearchText = document.getElementById("search").value;
+      if(SearchText.at(0) == '/'){
+        Search_Commands( SearchText.slice(1, SearchText.length), true);
+        hide_keyboard();
+      }
     }
   }else if(buttonIndex == 1 || buttonIndex == 16){ //B
     hide_keyboard();
