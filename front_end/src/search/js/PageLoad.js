@@ -62,7 +62,7 @@ window.addEventListener('load', (e) =>{
 
 
 // Getting User HyperLinks from backend
-get_UsersSavedLinks();
+//get_UsersSavedLinks();
 
 async function get_UsersSavedLinks(){
   fetch('/api/fetchUsersLinks/', {
@@ -114,9 +114,9 @@ async function send_UsersSavedLinks(){
 
 //old code for reference
 
-/*
+Load_Users_HyperLinks(FileToRead);
 var Temp_Values = new Array(6);
-var FileTarget = "/search/userSavedLinks.txt";
+var FileTarget = "search/userSavedLinks.txt";
 async function Load_Users_HyperLinks(FileToRead){
     var linksDiv = document.getElementById("LinksDiv");
     linksDiv.innerHTML = null;
@@ -151,4 +151,4 @@ async function Load_Users_HyperLinks(FileToRead){
     let data = await response.blob();
     inFS.readAsText(data);
     inFS.destroy;
-}*/
+}
