@@ -229,9 +229,8 @@ function Create_AddLinksButton(){
 
 function BuildQuickLink(new_link, index){
     let p = document.getElementById("LinksDiv");
-    console.log(index);
+    console.log("index", index);
     p.appendChild(createNewElement('div', null, 'HyperLinkStyle'));
-    //p.children[index].appendChild(createNewElement('div', null, null));
     p.children[index].setAttribute('draggable', true);
     p.children[index].style.display = "inline-flex";
     p.children[index].appendChild(createNewElement('button', null, 'LinkDeleteButton'));
@@ -246,6 +245,7 @@ function BuildQuickLink(new_link, index){
         
     p.children[index].appendChild(createNewElement('p', 'LinksRedirect', null));
   
+    console.log(new_link);
     p.children[index].children[2].innerHTML = new_link.title.at(0).toUpperCase();
     p.children[index].children[2].style.color = new_link.title_color;
     p.children[index].children[2].style.backgroundColor = new_link.background_color;
