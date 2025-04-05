@@ -143,6 +143,8 @@ async function Load_Users_HyperLinks(FileToRead){
         let index = i+1;
 //                     Title           Url             Title_C         Title_Hover     Background      Background_Hover
         //BuildQuickLink(Temp_Values[1], Temp_Values[0], Temp_Values[4], Temp_Values[5], Temp_Values[2], Temp_Values[3], index);
+        CurrentLocation = i+1;
+        CurrentLink = i+1;
         BuildQuickLink({"title": Temp_Values[1], "url": Temp_Values[0], "background_color": Temp_Values[2], "background_hover": Temp_Values[3], "title_color": Temp_Values[4], "title_hover": Temp_Values[4], index});
       }
       CheckHyperlinkArrangment();
