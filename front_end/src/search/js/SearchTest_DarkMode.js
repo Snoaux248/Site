@@ -90,16 +90,16 @@ const runColorMode = (fn) => {
   runColorMode((isDarkMode) => {
     if (isDarkMode) {
 
-        document.querySelector('#StyleSheetControl1').href = "/css/SearchLinks-Dark.css";
-        document.querySelector('#StyleSheetControl2').href = "/css/PopulateSearch-Dark.css";
+        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Dark.css";
+        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Dark.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Light Mode";
         darkmode = true;
 
 
         SetVariables("Dark");
     } else {
-        document.querySelector('#StyleSheetControl1').href = "/css/SearchLinks-Light.css";
-        document.querySelector('#StyleSheetControl2').href = "/css/PopulateSearch-Light.css";
+        document.querySelector('#StyleSheetControl1').href = "search/css/SearchLinks-Light.css";
+        document.querySelector('#StyleSheetControl2').href = "search/css/PopulateSearch-Light.css";
         document.querySelector('#DarkmodeToggle').innerHTML = "Dark Mode";
         darkmode = false;
 
