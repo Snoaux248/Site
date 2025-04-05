@@ -276,7 +276,7 @@ function Keyboard_Controls(buttonIndex){
     }else if(keyStroke == 'CapsLock'){
       Keyboard_Secondary(2);
     }else if(keyStroke == 'Space'){
-      document.querySelector('.Search').value += ' ';
+      document.querySelector('.search').value += ' ';
     }else if(keyStroke == 'Esc'){
       hide_keyboard();
     }else if(keyStroke == 'Tab'){
