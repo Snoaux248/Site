@@ -146,7 +146,7 @@ async function Load_Users_HyperLinks(FileToRead){
 //                     Title           Url             Title_C         Title_Hover     Background      Background_Hover
         //BuildQuickLink(Temp_Values[1], Temp_Values[0], Temp_Values[4], Temp_Values[5], Temp_Values[2], Temp_Values[3], index);
         const new_link = ({
-          'title': Temp_Values[1],
+          'title': Temp_Values[1]
           'url': Temp_Values[0],
           'background_color': Temp_Values[2],
           'background_hover': Temp_Values[3],
