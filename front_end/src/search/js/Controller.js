@@ -280,7 +280,7 @@ function Keyboard_Controls(buttonIndex){
     }else if(keyStroke == 'Esc'){
       hide_keyboard();
     }else if(keyStroke == 'Tab'){
-      var SearchText = document.getElementById("search").value;
+      var SearchText = document.getElementById("Search").value;
       if(SearchText.at(0) == '/'){
         Search_Commands( SearchText.slice(1, SearchText.length), true);
         hide_keyboard();

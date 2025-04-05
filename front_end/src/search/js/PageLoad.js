@@ -155,6 +155,8 @@ async function Load_Users_HyperLinks(FileToRead){
 
         });
         BuildQuickLink(new_link, index);
+        CurrentLink = i+1;
+        QuickLinks_structure.insert(new_link);
       }
       CheckHyperlinkArrangment();
     });
