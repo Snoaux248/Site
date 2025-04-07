@@ -262,12 +262,12 @@ function CheckHyperlinkArrangment(){
   if(PageState == 1){
       if(window.innerWidth >= 1040){
         if(CurrentLink >= 9){
-          HyperlinkDivWidth = 1040 + 5;
+          HyperlinkDivWidth = 1040;
         }else if(CurrentLink < 9){
-          HyperlinkDivWidth = (CurrentLink+1) * 104 + 1;
+          HyperlinkDivWidth = (CurrentLink+1) * 104;
         }
       }else if(window.innerWidth < 1040){
-        var num = Math.floor(window.innerWidth / 104 + 1);
+        var num = Math.floor(window.innerWidth / 104);
         if((CurrentLink + 1) > num){
           HyperlinkDivWidth = 104 * num;
         }else{
@@ -278,9 +278,9 @@ function CheckHyperlinkArrangment(){
   }else if(PageState == 2){
       num = Math.floor(window.innerWidth / 104);
       if((CurrentLink+1) > num){
-        HyperlinkDivWidth = (num) * 104 + CurrentLink / 3 * 2;
+        HyperlinkDivWidth = (num) * 104 + CurrentLink / 3;
       }else if((CurrentLink + 1) <= num){
-        HyperlinkDivWidth = (CurrentLink+1) * 104 + CurrentLink  / 3 * 2;
+        HyperlinkDivWidth = (CurrentLink+1) * 104 + CurrentLink  / 3;
       }
       //console.log(num, CurrentLink+1, HyperlinkDivWidth);
   }
