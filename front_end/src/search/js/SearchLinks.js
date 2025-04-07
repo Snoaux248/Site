@@ -86,7 +86,6 @@ window.addEventListener("resize", (e) =>{
       ResultMerge(1);
       console.log("ResultState", PageResultState, "Set");
       PageResultState = 1;
-      
 
     }else if(window.innerWidth <= 1400 && window.innerWidth > 830 && PageResultState != 2){
       ResizeUI();
@@ -133,7 +132,17 @@ window.addEventListener("resize", (e) =>{
       console.log("HyperLink State Changed To:", HLStateChange, "From", HyperlinkState);
       HyperlinkState = HLStateChange;
     }
+    keyboard_scale();
 });
+keyboard_scale();
+function keyboard_scale(){
+  if(document.querySelector(".keyboard").offsetWidth > (window.innerWidth - 20)){
+    var factor = (window.innerWidth - 20) / document.querySelector(".keyboard").offsetWidth;
+    document.querySelector(".keyboard").style.transform = "scale("+ factor +")";
+  }else{
+    document.querySelector(".keyboard").style.transform = "scale(1)";
+  }
+}
 
 function ResultMerge(currentState){
 
