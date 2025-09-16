@@ -355,8 +355,9 @@ Array.from(videoTitles).forEach(function(element) {
 var setMainPlayer = function(child){
     let urlKey = child.parentNode.parentNode.children[0].children[0].getAttribute('src');
 
-    document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].src = child.parentNode.parentNode.children[0].children[0].url;
     document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].setAttribute('urlcheck', urlKey);
+
+    document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].src = document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].getAttribute('urlcheck');
     document.getElementById('PageResults').classList.add("showMainPlayer");
 
     if(document.getElementById("Search").value != ""){
