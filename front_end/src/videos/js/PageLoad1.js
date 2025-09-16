@@ -71,9 +71,9 @@ window.addEventListener('load', (e) => {
     console.log("fail");
   }else{
     document.querySelector('#DisplayedSearch').innerHTML = document.querySelector('#Search').value;
-    search_function();
-    PageState = 2;
-    ResizeUI();
+      PageState = 2;
+      ResizeUI();
+    //search_function();
   }
   var temp = document.getElementsByClassName("mainplayer")[0];
   console.log(temp.children[0].children[0].children[0].children[0].children[0], temp.children[0].children[0].children[0].children[0].children[0].getAttribute("urlcheck"));

@@ -441,7 +441,7 @@ function autocomplete(inp, DataArray) {
       } else if (e.keyCode == 13) { //
         /*If the ENTER key is pressed, prevent the form from being submitted,*/
         e.preventDefault();
-        search_function();
+        //search_function();
         if(document.getElementById("Search").value != ""){
           document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
           //modifyURL(Search.value);
@@ -493,7 +493,7 @@ function search_function(){
     .catch(error => console.error('Error:', error));
 }
 async function getURLInfo(SearchResult){
-  search_function(SearchResult);
+  //search_function(SearchResult);
 }
 
 const populate_page = function(returned_results){

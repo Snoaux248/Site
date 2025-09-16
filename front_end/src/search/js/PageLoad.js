@@ -78,7 +78,7 @@ window.addEventListener('load', (e) =>{
       console.log("fail");
     }else{
         document.querySelector('#DisplayedSearch').innerHTML = document.querySelector('#Search').value;
-        search_function();
+        //search_function();
         PageState = 2;
         ResizeUI();
     }

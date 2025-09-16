@@ -590,7 +590,7 @@ function search_function(){
     .catch(error => console.error('Error:', error));*/
 }
 async function getURLInfo(SearchResult){
-  search_function(SearchResult);
+  //search_function(SearchResult);
 }
 
 const populate_page = function(returned_results){
