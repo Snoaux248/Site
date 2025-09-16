@@ -444,7 +444,7 @@ function autocomplete(inp, DataArray) {
         search_function();
         if(document.getElementById("Search").value != ""){
           document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
-          modifyURL(Search.value);
+          //modifyURL(Search.value);
           //window.history.replaceState('data', '234', 'key?search='+ Search.value);
         }
         if(DisplayedResults > -1 && SelectedResult > -1){

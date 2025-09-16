@@ -541,7 +541,7 @@ function autocomplete(inp, DataArray) {
         if(document.getElementById("Search").value != ""){
           document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
           //window.history.replaceState('data', '234', 'key?search='+ Search.value);
-          modifyURL(Search.value);
+          //modifyURL(Search.value);
         }
         if(DisplayedResults > -1 && SelectedResult > -1){
           parent.childNodes[SelectedResult].id = "SelectedSearch";
