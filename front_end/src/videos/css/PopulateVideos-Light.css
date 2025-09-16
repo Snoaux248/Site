@@ -1,8 +1,9 @@
 body{
+    background: linear-gradient(30deg, #fff 0%, #fff 20%, #fff 40%, #fff 70%, rgb(255 255 255) 100%);
     font: 16px arial ;
     align-items: center ;
     text-align: center ;
-    background-color:white;
+    background-color:#fff;
 
     scrollbar-width: none;
 }
