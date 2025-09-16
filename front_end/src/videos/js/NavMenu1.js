@@ -167,13 +167,14 @@ function DirectConnect(page){
     if(extension != ""){
         extension = "key?search=" + extension;
     }
+
     switch(page){
         case 1:
-            window.location.assign(prefix + "Snow/Search/" + extension);
+            window.location.assign("https://snoaux248.github.io/Site/front_end/src/search.html");
         break;
 
         case 2:
-            window.location.assign(prefix + "Snow/Videos/" + extension);
+            window.location.assign("https://snoaux248.github.io/Site/front_end/src/videos.html");
         break;
         case 3:
 
@@ -199,5 +200,5 @@ function DirectConnect(page){
 
 document.getElementById("LoginButton").addEventListener("click", (e) =>{
     e.preventDefault();
-    window.location.assign('http://127.0.0.1:8000/Snow/Login');
+    window.location.assign('https://snoaux248.github.io/Site/front_end/src/UserAuth/Login.html');
 });
