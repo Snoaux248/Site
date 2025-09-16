@@ -1,0 +1,959 @@
+<html>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <meta name="theme-color" content="#333">
+            <title>Snow's Search</title>
+            
+    <head>
+            <title></title>
+            
+            <link rel="stylesheet" media="screen" href="search/css/NavMenu.css" type="text/css">
+            <link rel="stylesheet" media="screen" href="search/css/SearchLinks-Light.css" type="text/css" id="StyleSheetControl1">
+            <link rel="stylesheet" media="screen" href="search/css/PopulateSearch-Light.css" type="text/css" id="StyleSheetControl2">
+            <link rel="stylesheet" href="Fonts/stylesheet.css" type="text/css" charset="utf-8">
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+            
+            <script defer src="search/js/PageGeneration.js"></script>
+            <script defer src="search/js/QuickLinks.js"></script>
+            <script defer src="search/js/PageLoad.js"></script>
+            
+            <script defer src="search/js/NavMenu.js"></script>
+            <script defer src="search/js/SearchLinks.js"></script>
+            <script defer src="search/js/SearchTest_DarkMode.js"></script>
+            <script defer src="search/js/PopulateSearch.js"></script>
+            <script defer src="search/js/Controller.js"></script>
+            <py-script src="/search/py/Dictionary.py"></py-script>
+
+    </head>
+    
+    <body>
+        <div>
+            <div id="NavMenuHolder">
+                <div id="NavOptions">
+                    <button id="PageButton" class="navb"> apps</button>
+                    <button id="LoginButton" class="navb"> Login </button>
+                    <button id="SettingsButton" class="navb"> settings</button>
+                    <button id="AccountButton" class="navb" style="display:none;"> person </button>
+                </div>
+            
+                <div id="NavSubPages">
+                    <button id="SearchRedirect" class="cpageredirect"> Search </button>
+                    <button id="StreamRedirect" class="pageredirect"> Stream </button>
+                    <button id="ImagesRedirect" class="pageredirect"> Images </button>
+                    <button id="VideosRedirect" class="pageredirect" onclick="DirectConnect(2)" > Videos </button>
+                
+                </div>
+                <div id="NavSubSettings">
+                    <button id="SettingsRedirect" class="cpageredirect"> Settings </button>
+                    <button id="DarkmodeToggle" class="pageredirect"> Darkmode </button>
+                    <button id="etcetera" class="pageredirect"> Etcetera </button>
+
+                </div>
+            
+            </div>
+        </div>
+        
+        
+        <div class="SearchAndLinks">
+            <div id="SearchBar">
+                <button type="submit" id="SearchIcon1" class="SearchButton" onclick="">zoom_in</button>
+                <input type="text" id="Search" class="Search" placeholder="Search the Web" autocomplete="off" value="<%= search %>">
+                <button type="submit" id="SearchIcon2" class="SearchButton" style="border-right:1px solid transparent; padding:0px; width:0px;">close</button>
+                <button type="submit" id="SearchIcon3" class="SearchButton" onclick="">mic</button>
+            </div>
+            <div id="SearchSuggestions">
+                
+            </div>
+            
+            <div id="LinksCreater">
+                
+                <p id="LinkTitle">inactive</p>
+                
+                <div class="linklineholder">
+                    <p class="linktext" style="display:inline;">Title:</p>
+                    <input type="text" id="LinkAddTitle" class="linkce" placeholder="Snow" autocomplete="off">
+                    <button type="submit" class="linksclearicon" onclick="ClearTitle()">close</button>
+                </div>
+                <div class="linklineholder">
+                        <p class="linktext" style="display:inline;">URL:</p>
+                        <input type="text" id="LinkAddURL" class="linkce" placeholder="example.snow.com" autocomplete="off">
+                        <button type="submit" class="linksclearicon" onclick="ClearURL()">close</button>
+                </div>
+                
+                <div class="linkbuttonholder">
+                    <input type="color" id="LinkTColorPicker" class="lb" value="#000000">
+                    <input type="color" id="LinkBGColorPicker" class="lb" value="#f6f6f6">
+                    <button type="submit" id="DiscardB" class="linkbutton" onclick="LinksCancel()">Discard</button>
+                    <button type="submit" id="CreateLinkB" class="linkbutton">Save</button>
+                    <input type="color" id="LinkTHColorPicker" class="lb" value="#A7DDEE">
+                    <input type="color" id="LinkBGHColorPicker" class="lb" value="#ffffff">
+                </div>
+                    
+            </div>
+        </div>
+        <page>
+            <div id="PageTitleMain">
+                <p class="TitleBig">Search</p>
+            </div>
+                
+            <div id="PageTitleSecondary">
+                <p class="TitleSmall titleSmallHidden">Snow's Search</p>
+            </div>
+            
+            <div class="LinksDiv">
+
+
+            </div> <!--End seatch 1links-->
+
+
+            <div class="AE"></div>
+            <div class="AE2"></div>
+
+
+            <div class="AfterEnter">
+                <div id="PRpreview">
+                    <h id="DisplayedSearch"> Result</h>
+                        </br>
+                    <h id="AlternateSearchOption"> Alternate Result</h>
+                        </br>
+                </div>
+                <div id="PageResults">
+                
+                    <div id="Col1">
+                        <div class="PageResultIframe" type="external_link" column="1" left="0" right="0">
+                            <div class="PageResultIframeContainer">
+                                <div class="pageResultInformation">
+                                    <div class="iframeResultPadding">
+                                        <embed class="graph" src="search/resume.pdf" embed/>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="PageResultIframe" type="external_link" column="2" left="0" right="0">
+                            <div class="PageResultIframeContainer">
+                                <div class="pageResultInformation">
+                                    <div class="iframeResultPadding">
+                                        <iframe class="graph" src="https://www.desmos.com/calculator/2euuaz1vws" sandbox="allow-scripts allow-same-origin"></iframe>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="iframeResultButtonK">fullscreen</button>
+                                <button class="pageResultButtonH">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft">arrow_back_ios</button>
+                                        <button class="PullLeft">arrow_forward_ios</button>
+                                        <button class="PullRight">arrow_back_ios</button>
+                                        <button class="PushRight">arrow_forward_ios</button>
+                                    </div>
+                                    <div>
+                                        <button class="BumpLeft">arrow_left</button>
+                                        <button class="BumpRight">arrow_right</button>
+                                        <button class="BumpUp">arrow_drop_up</button>
+                                        <button class="BumpDown">arrow_drop_down</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="PageResultIframe" type="external_link" column="1" left="0" right="0">
+                            <div class="PageResultIframeContainer">
+                                <div class="pageResultInformation">
+                                    <div class="iframeResultPadding">
+                                        <iframe class="graph" src="https://www.desmos.com/calculator/ebff204043" sandbox="allow-scripts allow-same-origin"></iframe>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="iframeResultButtonK">fullscreen</button>
+                                <button class="pageResultButtonH">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft">arrow_back_ios</button>
+                                        <button class="PullLeft">arrow_forward_ios</button>
+                                        <button class="PullRight">arrow_back_ios</button>
+                                        <button class="PushRight">arrow_forward_ios</button>
+                                    </div>
+                                    <div>
+                                        <button class="BumpLeft">arrow_left</button>
+                                        <button class="BumpRight">arrow_right</button>
+                                        <button class="BumpUp">arrow_drop_up</button>
+                                        <button class="BumpDown">arrow_drop_down</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div id="Col2">
+                        <!--
+                        <div class="PageResult" type="definition" column="2" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <h class="DeffWordSound">Definition of "chess"</h>
+                                        <p class="deffWordIn">Subject: undefined</p>
+                                        <p class="deffWordIn">Lexical Category: Noun</p>
+                                        <p class="WordDeff">-  A game played on a chessboard, by two persons, with two differently colored sets of men, sixteen in each set. Each player has a king, a queen, two bishops, two knights, two castles or rooks, and eight pawns. </p>
+                                        <p class="WordSyn">Synonyms: </p>
+                                        <p class="etymology">Etymology of _____ </p>
+                                        <p class="deffWordIn">Subject: undefined</p>
+                                        <p class="deffWordIn">Lexical Category: Noun</p>
+                                        <p class="WordDeff">-  A species of brome grass (Bromus secalinus) which is a troublesome weed in wheat fields, and is often erroneously regarded as degenerate or changed wheat; it bears a very slight resemblance to oats, and if reaped and ground up with wheat, so as to be used for food, is said to produce narcotic effects; -- called also cheat and Willard's bromus. </p>
+                                        <p class="WordSyn">Synonyms: </p>
+                                        <p class="etymology">Etymology of _____ </p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH">description</button>
+                                <div class="pageResultDisclaimer">
+
+                                </div>
+                                <button class="pageResultButtonH"></button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft">arrow_back_ios</button>
+                                        <button class="PullLeft">arrow_forward_ios</button>
+                                        <button class="PullRight">arrow_back_ios</button>
+                                        <button class="PushRight">arrow_forward_ios</button>
+                                    </div>
+                                    <div>
+                                        <button class="BumpLeft">arrow_left</button>
+                                        <button class="BumpRight">arrow_right</button>
+                                        <button class="BumpUp">arrow_drop_up</button>
+                                        <button class="BumpDown">arrow_drop_down</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <div id="Col3">
+                        <div class="Stack" type="stack" preview="0" column="2" left="0" right="0">
+                            <div class="stackhead">
+                                <div class="resultPadding">
+                                    <h class="DeffWordSound"> Example Stack </h>
+                                    <button class="stackButton">keyboard_arrow_down</button>
+                                    <button class="stackScroll">visibility</button>
+                                </div>
+                            </div>
+                            <div class="stackbody hidden">
+                                <div class="PageResultContainer hidden">
+                                    <div class="pageResultInformation">
+                                        <div class="resultPadding"> 
+                                            
+                                                <a href="https:/www.google.com" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
+                                            
+                                        <p class="PagePublish">Published: 12/12/2020 1</p>
+                                        <p class="PageDescription">Description: sagittis aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    id semper risus in. Sit amet dictum sit amet. Nunc vel risus commodo </p>
+                                        <p class="keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="Mkeywords">Missing Keywords: 5,6,7,8</p>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                
+                                <div class="PageResultContainer hidden">
+                                    <div class="pageResultInformation">
+                                        <div class="resultPadding">
+                                            
+                                                <a href="www.apple.com" class="PageLink">Vulputate sapien nec laboris nisi ut aliquip ex ea   commodo</a>
+                                            
+                                        <p class="PagePublish">Published: 12/12/2020 2</p>
+                                        <p class="PageDescription">Description: sagittis aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    id semper risus in. Sit amet dictum sit amet. Nunc vel risus commodo </p>
+                                        <p class="keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="Mkeywords">Missing Keywords: 5,6,7,8</p>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                                            <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                        </div>
+                                    </div>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                
+                                <div class="PageResultContainer hidden">
+                                    <div class="pageResultInformation">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="PageResultContainer hidden">
+                                    <div class="pageResultInformation">
+                                        <div class="resultPadding">
+                                            <h class="DeffWordSound">Definition of _____ </h>
+                                        
+                                            <p class="deffWordIn">_____ in Math:</p>
+                                            <p class="WordDeff">- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse     cillum    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non    proident,    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                            <p class="WordSyn"> Synonyms: </p>
+                                        
+                                            <p class="deffWordIn">_____ in Art:</p>
+                                            <p class="WordDeff">- Vulputate sapien nec sagittis aliquam malesuada bibendum arcu           vitae. Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in           mollis nunc sed id semper risus in. Sit amet dictum sit amet. Nunc vel  risus        commodo viverra maecenas</p>
+                                            <p class="WordSyn">Synonyms: </p>
+                                        
+                                            <p class="etymology">Etymology of _____</p>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                                        
+                                        </div>
+                                    </div>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="2" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="https://www.apple.com">Apple.com</a>
+                                        <p class="PagePublish">Published: Eternity</p>
+                                        <p class="PageDescription">Iphone 12x24 max mini pro negative -2 aliquam malesuada bibendum arcu vitae.     Velit dignissim sodales ut eu sem integer vitae justo. Nisl purus in mollis nunc sed    i</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft">arrow_back_ios</button>
+                                        <button class="PullLeft">arrow_forward_ios</button>
+                                        <button class="PullRight">arrow_back_ios</button>
+                                        <button class="PushRight">arrow_forward_ios</button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">arrow_left</button>
+                                        <button class="BumpRight">arrow_right</button>
+                                        <button class="BumpUp">arrow_drop_up</button>
+                                        <button class="BumpDown">arrow_drop_down</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="3" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Wordle.mp4">Wordle</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription">Wordle in the terminal</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="3" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Linear%20Algebra.mp4">Linear Algebra solver</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription">Quick matrix solver and manipulator tool any sized matrix in C</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="3" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Order%20System.mp4">JavaFX Customer Order System</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription">JavaFX customer order system with native binaries for MacOS and Windows <br> "Individual Class Project for CS-3365 Object Oriented Programming"</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="3" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Renderer.mp4">C++ 3D Renderer</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription">Perlin noise and .obj file rendering</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="2" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Web%20Site.mp4">Snow's Site</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription">The magnificent webpage your staring at: Dynamic UI, Hyperlink storage, native and web apps, video player and definition search backend in C express and node</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="2" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/Minecraft%20Storage%20System.mp4">A small computer in Minecraft</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription"> Automated branched item crafting, automatic Item Retireval, and automatic sorting</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="PageResult hyperlink" type="hyperlink" style="border-radius: 20px;" column="2" left="0" right="0">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation" style="opacity: 1;">
+                                    <div class="resultPadding">
+                                        <a class="PageLink" href="http://127.0.0.1:8000/Snow/Videos/key?url=/3ZEE-Final.mp4">An animation by me</a>
+                                        <p class="PagePublish">Published: 10th Sep 2025</p>
+                                        <p class="PageDescription"> a 3D animation I made for my friends YouTube outro</p>
+                                        <p class="Keywords">Found Keywords: 1,2,3,4</p>
+                                        <p class="MKeywords">Missing Keywords: 5,6,7,8</p>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer" style="right: -100%;">
+                                    <div class="resultPadding">
+                                        <p class="PageDescription">This site has been seletively chosen to be a possible search result. This is not an endorsement of support for this site, but meerly as an identification of serving a possibly useful purpose</p>
+                                    </div>
+                                </div>
+                                <button class="pageResultButtonH" style="top: 10px; right: 10px;">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="PushLeft"> right_panel_open </button>
+                                        <button class="PullLeft"> right_panel_close</button>
+                                        <button class="PullRight">left_panel_close </button>
+                                        <button class="PushRight">left_panel_open  </button>
+                                    </div>
+                                    <div >
+                                        <button class="BumpLeft">  arrow_back_ios</button>
+                                        <button class="BumpRight"> arrow_forward_ios</button>
+                                        <button class="BumpUp" style="transform:rotate(90deg);">    arrow_back_ios</button>
+                                        <button class="BumpDown" style="transform:rotate(90deg);">  arrow_forward_ios</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--
+                        
+                        <div class="Stack" preview="0">
+                            <div class="stackhead">
+                                <div class="resultPadding">
+                                    <h class="DeffWordSound"> PHYS-2401 HW </h>
+                                    <button class="stackButton">keyboard_arrow_down</button>
+                                    <span class="stackScroll">visibility</span>
+                                </div>
+                            </div>
+                            <div class="stackbody">
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/er4trfffix"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/cny4esx4ag"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/rtw2diypwf"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/ogea6389ku"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/alcgsfdgib"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/ka61ofbwnw"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                                <div class="pageResultIframe">
+                                    <div class="pageResultInformation">
+                                        <div class="iframeResultPadding">
+                                            <iframe class="graph" class="graph-2d" src="https://www.desmos.com/calculator/6hgw5matjq"></iframe>
+                                        </div>
+                                    </div>
+                                    <div class="pageResultDisclaimer">
+                                        <div class="resultPadding">
+                        
+                                        </div>
+                                    </div>
+                                    <button class="iframeResultButtonK">fullscreen</button>
+                                    <button class="pageResultButtonH">description</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    -->
+                </div>
+                
+            </div>
+            <div class="keyboard">
+                <div class="keyrow">
+                    <div class="key"><p>Esc</p></div>
+                    <div class="key"><p>!</p><p>1</p></div>
+                    <div class="key"><p>@</p><p>2</p></div>
+                    <div class="key"><p>#</p><p>3</p></div>
+                    <div class="key"><p>$</p><p>4</p></div>
+                    <div class="key"><p>%</p><p>5</p></div>
+                    <div class="key"><p>^</p><p>6</p></div>
+                    <div class="key"><p>&</p><p>7</p></div>
+                    <div class="key"><p>*</p><p>8</p></div>
+                    <div class="key"><p>(</p><p>9</p></div>
+                    <div class="key"><p>)</p><p>0</p></div>
+                    <div class="key"><p>_</p><p>-</p></div>
+                    <div class="key"><p>+</p><p>=</p></div>
+                    <div class="key"><p>Delete</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Tab</p></div>
+                    <div class="key"><p>Q</p><p>q</p></div>
+                    <div class="key"><p>W</p><p>w</p></div>
+                    <div class="key"><p>E</p><p>e</p></div>
+                    <div class="key"><p>R</p><p>r</p></div>
+                    <div class="key"><p>T</p><p>t</p></div>
+                    <div class="key"><p>Y</p><p>y</p></div>
+                    <div class="key"><p>U</p><p>u</p></div>
+                    <div class="key"><p>I</p><p>i</p></div>
+                    <div class="key"><p>O</p><p>o</p></div>
+                    <div class="key"><p>P</p><p>p</p></div>
+                    <div class="key"><p>{</p><p>[</p></div>
+                    <div class="key"><p>}</p><p>]</p></div>
+                    <div class="key"><p>|</p><p>\</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>CapsLock</p></div>
+                    <div class="key"><p>A</p><p>a</p></div>
+                    <div class="key"><p>S</p><p>s</p></div>
+                    <div class="key"><p>D</p><p>d</p></div>
+                    <div class="key"><p>F</p><p>f</p></div>
+                    <div class="key controllerSelect"><p>G</p><p>g</p></div>
+                    <div class="key"><p>H</p><p>h</p></div>
+                    <div class="key"><p>J</p><p>j</p></div>
+                    <div class="key"><p>K</p><p>k</p></div>
+                    <div class="key"><p>L</p><p>l</p></div>
+                    <div class="key"><p>:</p><p>;</p></div>
+                    <div class="key"><p>"</p><p>'</p></div>
+                    <div class="key"><p>Enter</p><p>Return</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Shift</p></div>
+                    <div class="key"><p>Z</p><p>z</p></div>
+                    <div class="key"><p>X</p><p>x</p></div>
+                    <div class="key"><p>C</p><p>c</p></div>
+                    <div class="key"><p>V</p><p>v</p></div>
+                    <div class="key"><p>B</p><p>b</p></div>
+                    <div class="key"><p>N</p><p>n</p></div>
+                    <div class="key"><p>M</p><p>m</p></div>
+                    <div class="key"><p>,</p><p>,</p></div>
+                    <div class="key"><p>.</p><p>.</p></div>
+                    <div class="key"><p>/</p><p></p></div>
+                    <div class="key"><p>?</p><p></p></div>
+                    <div class="key"><p>Shift</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Fn</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Cmd</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Space</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Fn</p></div>
+                </div>
+            </div>
+        </page>
+        
+    </body>
+</html>
