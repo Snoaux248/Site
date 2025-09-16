@@ -174,7 +174,7 @@ function DirectConnect(page){
         break;
 
         case 2:
-            window.location.assign("https://snoaux248.github.io/Site/front_end/src/videos.html");
+            window.location.assign("https://snoaux248.github.io/Site/front_end/src/video.html");
         break;
         case 3:
 
