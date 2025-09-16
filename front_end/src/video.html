@@ -11,6 +11,7 @@
             <link rel="stylesheet" media="screen" href="videos/css/NavMenu1.css" type="text/css">
             <link rel="stylesheet" media="screen" href="videos/css/SearchLinks-Light1.css" type="text/css" id="StyleSheetControl1">
             <link rel="stylesheet" media="screen" href="videos/css/PopulateSearch-Light1.css" type="text/css" id="StyleSheetControl2">
+            <link rel="stylesheet" media="screen" href="mainplayer/css/mainplayer.css" type="text/css"/>
             <link rel="stylesheet" href="Fonts/stylesheet.css" type="text/css" charset="utf-8">
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -19,6 +20,7 @@
             <script defer src="videos/js/PageGeneration1.js"></script>
             <script defer src="videos/js/QuickLinks1.js"></script>
             <script defer src="videos/js/PageLoad1.js"></script>
+            <script defer src="mainplayer/js/mainplayer.js"></script>
             
             <script defer src="videos/js/NavMenu1.js"></script>
             <script defer src="videos/js/SearchLinks1.js"></script>
@@ -129,7 +131,45 @@
                             <div class="PageResultContainer">
                                 <div class="pageResultInformation">
                                     <div class="resultPadding">
-                                        <iframe src="http://127.0.0.1:8000/Snow/MainPlayer/key?url=<%= url %>" urlcheck="<%= url %>" frameborder="0"></iframe>
+                                        <div id="VideoFrame" style="bottom:0px;">
+                                            <video class="video" src="https://github.com/Snoaux248/Site/raw/refs/heads/main/back_end/videos/Wordle.mp4?download=" volume="20"></video>
+                                            <button id="PlayPause" class="bigbutton">pause</button>
+
+                                            <div id="VolumeDiv">
+
+                                                <div id="VD">
+                                                    <p id="VolumePercentage"> 20 </p>
+                                                    <div id="VolumeTimeLineHolder">
+                                                        <div id="VolumeTimeLine">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <img src="mainplayer/Volume_1.png" id="Volume" onclick="VolumeB()">
+                                            </div>
+                                            <div id="VideoDiv">
+                                                <div id="TimelineSelectionArea">
+                                                    <div id="VideoTimeLineHolder">
+                                                        <div id="VideoTimeLineDownload">
+                                                        </div>
+                                                        <div id="VideoTimeLineHover">
+
+                                                        </div>
+                                                        <div id="VideoTimeLine">
+
+                                                        </div>
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="VideoSettingsDiv">
+                                                <img src="mainplayer/Settings.png" id="VideoSettingsButton" onclick="SettingsB()">
+                                            </div>
+                                            <video id="FramePreview" src="https://github.com/Snoaux248/Site/raw/refs/heads/main/back_end/videos/Wordle.mp4?download=" ></video>
+                                            <p id="CTime"> MM:SS / CM:CS</p> 
+                                            <div id="FullscreenDiv">
+                                                <img src="mainplayer/Enter_Fullscreen.png" id="ScreenResize" onclick="openFullscreen()">
+                                            </div>
+                                        </div>
                                         <div class="description">
                                             <img class="previewChannelIcon" src="videos/nothing.jpg">
                                             <p class="previewChannelName">Channel Name</p>

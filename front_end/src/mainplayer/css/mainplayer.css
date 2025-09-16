@@ -6,13 +6,12 @@ body{
 
 #VideoFrame{
     position:relative;
-    top:50%;
-    transform:translateY(-50%);
     width:100%;
     height:auto;
     background-color:black;
     overflow:hidden;
     transition:.2s;
+    border-radius: 15px;
     
     -webkit-touch-callout: none;
     -webkit-user-select: none;

@@ -365,7 +365,7 @@ var CurrentlyScrubbingVideo = 0;
 function VideoOnDrag({pageX}){
     let mouseX;
     if(VideoFullScreenState == 0){
-        mouseX = parseInt(pageX) -10;
+        mouseX = parseInt(pageX) -10 -25;
     }else if(VideoFullScreenState == 1){
         mouseX = parseInt(pageX) -10;
     }
@@ -386,7 +386,7 @@ TimelineSelectionArea.addEventListener("mousedown", (e) =>{
 function DisplayFramePreview({pageX}){
     let mouseX;
     if(VideoFullScreenState == 0){
-        mouseX = parseInt(pageX) -10;
+        mouseX = parseInt(pageX) -10 -25;
     }else if(VideoFullScreenState == 1){
         mouseX = parseInt(pageX) -10;
     }
@@ -394,10 +394,10 @@ function DisplayFramePreview({pageX}){
     //console.log(pageX);
         if((mouseX - 70) < 10){
             FramePreview.style.left = "10px";
-        }else if((mouseX - 70) >= (VideoFrame.offsetWidth - 170)){
-            FramePreview.style.left = (VideoFrame.offsetWidth - 170);
+        }else if((mouseX - 70) >= (VideoFrame.offsetWidth - 170-25)){
+            FramePreview.style.left = (VideoFrame.offsetWidth - 170-25);
         }else{
-            FramePreview.style.left = mouseX - 70 + "px";
+            FramePreview.style.left = mouseX - 70+ "px";
         }
         VideoTimeLineHover.style.width = mouseX + "px";
         FramePreview.currentTime = (mouseX) * (Video.duration / (VideoFrame.offsetWidth - 20));
