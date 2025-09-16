@@ -101,7 +101,7 @@ var QuickLinkRemove = function(){
 
   CheckHyperlinkArrangment();
   page.QuickLinks_structure.remove_by_location(location);
-  send_UsersSavedLinks();
+  //send_UsersSavedLinks();
 
   setTimeout(() => {
     parent2.getElementsByClassName("LinkEditButton")[0].removeEventListener('click', QuickLinkEdit);
@@ -223,7 +223,7 @@ document.getElementById("CreateLinkB").addEventListener("click", (e) => {
 
     console.log("CurrentLocation", CurrentLocation);
     page.QuickLinks_structure.insert(new_link, CurrentLocation);
-    send_UsersSavedLinks();
+    //send_UsersSavedLinks();
   }else if(CreatorTitle == "Add Link"){
     CurrentLink++;
 
@@ -239,7 +239,7 @@ document.getElementById("CreateLinkB").addEventListener("click", (e) => {
     console.log("CurrentLocation", CurrentLink);
     page.QuickLinks_structure.insert(new_link, CurrentLink);
     BuildQuickLink(new_link, CurrentLink);
-    send_UsersSavedLinks();
+    //send_UsersSavedLinks();
   }
     
   document.getElementById("LinkTitle").innerHTML = "inactive";
