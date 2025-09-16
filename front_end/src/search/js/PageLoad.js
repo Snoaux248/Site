@@ -87,7 +87,7 @@ window.addEventListener('load', (e) =>{
 
 
 // Getting User HyperLinks from backend
-get_UsersSavedLinks();
+//get_UsersSavedLinks();
 
 
 async function get_UsersSavedLinks(){
