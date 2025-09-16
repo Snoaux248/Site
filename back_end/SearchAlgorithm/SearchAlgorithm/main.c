@@ -301,7 +301,12 @@ struct definition **get_definition_pointer(struct node *word_tree, char *word, i
     }
     printf("\n");
     //printf("\ndef: %s\n", search->def->definition);
+    if(search->def == NULL){
+        printf("def = NULL\n");
+        return NULL;
+    }
     return &search->def;
+        
 }
 
 void link_definitions(struct word *sentence_head){

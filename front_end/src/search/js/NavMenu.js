@@ -163,14 +163,39 @@ function PageRedirect(x){
 //PageRedirect('//127.0.0.1:8000/Snow/Videos/Mainplayer/url?key=3ZEE-Final.mp4'
 function DirectConnect(page){  
     let prefix = "//127.0.0.1:8000/"
-    let url = document.getElementById("Search").value;
+    let extension = document.getElementById("Search").value;
+    if(extension != ""){
+        extension = "key?search=" + extension;
+    }
+
+    switch(page){
+        case 1:
+            window.location.assign(prefix + "Snow/Search/" + extension);
+        break;
+
+        case 2:
+            window.location.assign(prefix + "Snow/Videos/" + extension);
+        break;
+        case 3:
+
+        break;
+
+        case 4:
+
+        break
+
+        default:
+
+        break
+    }
+    /*
     if(page == 1){
         window.location.assign("Snow/Search/search?key=" + "url");
     }else if(page == 2){
         window.location.assign(prefix + "Snow/Videos/Mainplayer/url?key=" + url);
     }else{
 
-    }
+    }*/
 }
 
 document.getElementById("LoginButton").addEventListener("click", (e) =>{

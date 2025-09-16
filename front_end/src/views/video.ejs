@@ -1,0 +1,429 @@
+<html>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <meta name="theme-color" content="#333">
+            <title>Snow's Videos</title>
+            
+    <head>
+            <title></title>
+            
+            <link rel="stylesheet" media="screen" href="videos/css/NavMenu1.css" type="text/css">
+            <link rel="stylesheet" media="screen" href="videos/css/SearchLinks-Light1.css" type="text/css" id="StyleSheetControl1">
+            <link rel="stylesheet" media="screen" href="videos/css/PopulateSearch-Light1.css" type="text/css" id="StyleSheetControl2">
+            <link rel="stylesheet" href="Fonts/stylesheet.css" type="text/css" charset="utf-8">
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+            
+            <script defer src="videos/js/PageGeneration1.js"></script>
+            <script defer src="videos/js/QuickLinks1.js"></script>
+            <script defer src="videos/js/PageLoad1.js"></script>
+            
+            <script defer src="videos/js/NavMenu1.js"></script>
+            <script defer src="videos/js/SearchLinks1.js"></script>
+            <script defer src="videos/js/SearchTest_DarkMode1.js"></script>
+            <script defer src="videos/js/PopulateSearch1.js"></script>
+            <script defer src="videos/js/Controller1.js"></script>
+
+            <script defer src="videos/js/PopulateVideos.js"></script>
+
+            <py-script src="/search/py/Dictionary.py"></py-script>
+
+    </head>
+    
+    <body>
+        <div>
+            <div id="NavMenuHolder">
+                <div id="NavOptions">
+                    <button id="PageButton" class="navb"> apps</button>
+                    <button id="LoginButton" class="navb"> Login </button>
+                    <button id="SettingsButton" class="navb"> settings</button>
+                    <button id="AccountButton" class="navb" style="display:none;"> person </button>
+                </div>
+            
+                <div id="NavSubPages">
+                    <button id="SearchRedirect" class="pageredirect" onclick="DirectConnect(1)"> Search </button>
+                    <button id="StreamRedirect" class="pageredirect"> Stream </button>
+                    <button id="ImagesRedirect" class="pageredirect"> Images </button>
+                    <button id="VideosRedirect" class="cpageredirect"> Videos </button>
+                
+                </div>
+                <div id="NavSubSettings">
+                    <button id="SettingsRedirect" class="cpageredirect"> Settings </button>
+                    <button id="DarkmodeToggle" class="pageredirect"> Darkmode </button>
+                    <button id="etcetera" class="pageredirect"> Etcetera </button>
+
+                </div>
+            
+            </div>
+        </div>
+        
+        
+        <div class="SearchAndLinks">
+            <div id="SearchBar">
+                <button type="submit" id="SearchIcon1" class="SearchButton" onclick="">zoom_in</button>
+                <input type="text" id="Search" class="Search" placeholder="Search the Web" autocomplete="off" value="<%= search %>">
+                <button type="submit" id="SearchIcon2" class="SearchButton" style="border-right:1px solid transparent; padding:0px; width:0px;">close</button>
+                <button type="submit" id="SearchIcon3" class="SearchButton" onclick="">mic</button>
+            </div>
+            <div id="SearchSuggestions">
+                
+            </div>
+            
+            <div id="LinksCreater">
+                
+                <p id="LinkTitle">inactive</p>
+                
+                <div class="linklineholder">
+                    <p class="linktext" style="display:inline;">Title:</p>
+                    <input type="text" id="LinkAddTitle" class="linkce" placeholder="Snow" autocomplete="off">
+                    <button type="submit" class="linksclearicon" onclick="ClearTitle()">close</button>
+                </div>
+                <div class="linklineholder">
+                        <p class="linktext" style="display:inline;">URL:</p>
+                        <input type="text" id="LinkAddURL" class="linkce" placeholder="example.snow.com" autocomplete="off">
+                        <button type="submit" class="linksclearicon" onclick="ClearURL()">close</button>
+                </div>
+                
+                <div class="linkbuttonholder">
+                    <input type="color" id="LinkTColorPicker" class="lb" value="#000000">
+                    <input type="color" id="LinkBGColorPicker" class="lb" value="#f6f6f6">
+                    <button type="submit" id="DiscardB" class="linkbutton" onclick="LinksCancel()">Discard</button>
+                    <button type="submit" id="CreateLinkB" class="linkbutton">Save</button>
+                    <input type="color" id="LinkTHColorPicker" class="lb" value="#EC6A6A">
+                    <input type="color" id="LinkBGHColorPicker" class="lb" value="#ffffff">
+                </div>
+                    
+            </div>
+        </div>
+        <page>
+            <div id="PageTitleMain">
+                <p class="TitleBig">Videos</p>
+            </div>
+                
+            <div id="PageTitleSecondary">
+                <p class="TitleSmall titleSmallHidden">Snow's Videos</p>
+            </div>
+            
+            <div class="LinksDiv">
+
+
+            </div> <!--End seatch 1links-->
+
+
+            <div class="AE"></div>
+            <div class="AE2"></div>
+
+
+            <div class="AfterEnter">
+                <div id="PRpreview">
+                    <h id="DisplayedSearch"> Result</h>
+                        </br>
+                    <h id="AlternateSearchOption"> Alternate Result</h>
+                        </br>
+                </div>
+                <div id="PageResults" class="<%= wowow %>">
+                    <div class="mainplayer">
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <iframe src="http://127.0.0.1:8000/Snow/MainPlayer/key?url=<%= url %>" urlcheck="<%= url %>" frameborder="0"></iframe>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Channel Name</p>
+                                            <a href="" class="previewTitle">3Zee.mp4</a>
+                                            <p class="previewInfo">-2 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                            <div class="controlContainer">
+                                <div class="resizeControlls">
+                                    <div>
+                                        <button class="BumpLeft">arrow_left</button>
+                                        <button class="BumpRight">arrow_right</button>
+                                        <button class="BumpUp">arrow_drop_up</button>
+                                        <button class="BumpDown">arrow_drop_down</button>
+                                    </div>
+                                    <div style="display:none;">
+                                        <button class="Expand">fullscreen</button>
+                                    </div>
+                                </div>
+                                <div class="resultControlls">
+                                    <button class="delete"> </button>
+                                    <button class="minimize"> </button>
+                                    <button class="resize" > </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="SearchResults">
+
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Wordle.mp4" id="v"></video>
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">Wordle "what more is there to say"</a>
+                                            <p class="previewInfo">-2 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+
+
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Linear%20Algebra.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">Linear Algebra solver</a>
+                                            <p class="previewInfo"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                                </div>
+                        </div>
+
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Order%20System.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">JavaFX Customer Order System</a>
+                                            <p class="previewInfo">+70 sec</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Renderer.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">C++ 3D Renderer</a>
+                                            <p class="previewInfo">+70 sec</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Web%20Site.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">Snow's Site</a>
+                                            <p class="previewInfo">+70 sec</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/Minecraft%20Storage%20System.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">A small computer in Minecraft</a>
+                                            <p class="previewInfo">+70 sec</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+                        <div class="pageResultVideo">
+                            <div class="PageResultContainer">
+                                <div class="pageResultInformation">
+                                    <div class="resultPadding">
+                                        <div class="previewVideoHolder">
+                                            <video class="RECVideoPreview" src="../back_end/videos/3ZEE-Final.mp4"></video>
+
+
+                                        </div>
+                                        <div class="description">
+                                            <img class="previewChannelIcon" src="videos/nothing.jpg">
+                                            <p class="previewChannelName">Snow</p>
+                                            <a href="" class="previewTitle">An animation by me</a>
+                                            <p class="previewInfo">+70 sec</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pageResultDisclaimer">
+                                    <div class="resultPadding">
+
+                                    </div>
+                                </div>
+                                <button class="pageResultButton">description</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="keyboard">
+                <div class="keyrow">
+                    <div class="key"><p>Esc</p></div>
+                    <div class="key"><p>!</p><p>1</p></div>
+                    <div class="key"><p>@</p><p>2</p></div>
+                    <div class="key"><p>#</p><p>3</p></div>
+                    <div class="key"><p>$</p><p>4</p></div>
+                    <div class="key"><p>%</p><p>5</p></div>
+                    <div class="key"><p>^</p><p>6</p></div>
+                    <div class="key"><p>&</p><p>7</p></div>
+                    <div class="key"><p>*</p><p>8</p></div>
+                    <div class="key"><p>(</p><p>9</p></div>
+                    <div class="key"><p>)</p><p>0</p></div>
+                    <div class="key"><p>_</p><p>-</p></div>
+                    <div class="key"><p>+</p><p>=</p></div>
+                    <div class="key"><p>Delete</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Tab</p></div>
+                    <div class="key"><p>Q</p><p>q</p></div>
+                    <div class="key"><p>W</p><p>w</p></div>
+                    <div class="key"><p>E</p><p>e</p></div>
+                    <div class="key"><p>R</p><p>r</p></div>
+                    <div class="key"><p>T</p><p>t</p></div>
+                    <div class="key"><p>Y</p><p>y</p></div>
+                    <div class="key"><p>U</p><p>u</p></div>
+                    <div class="key"><p>I</p><p>i</p></div>
+                    <div class="key"><p>O</p><p>o</p></div>
+                    <div class="key"><p>P</p><p>p</p></div>
+                    <div class="key"><p>{</p><p>[</p></div>
+                    <div class="key"><p>}</p><p>]</p></div>
+                    <div class="key"><p>|</p><p>\</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>CapsLock</p></div>
+                    <div class="key"><p>A</p><p>a</p></div>
+                    <div class="key"><p>S</p><p>s</p></div>
+                    <div class="key"><p>D</p><p>d</p></div>
+                    <div class="key"><p>F</p><p>f</p></div>
+                    <div class="key controllerSelect"><p>G</p><p>g</p></div>
+                    <div class="key"><p>H</p><p>h</p></div>
+                    <div class="key"><p>J</p><p>j</p></div>
+                    <div class="key"><p>K</p><p>k</p></div>
+                    <div class="key"><p>L</p><p>l</p></div>
+                    <div class="key"><p>:</p><p>;</p></div>
+                    <div class="key"><p>"</p><p>'</p></div>
+                    <div class="key"><p>Enter</p><p>Return</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Shift</p></div>
+                    <div class="key"><p>Z</p><p>z</p></div>
+                    <div class="key"><p>X</p><p>x</p></div>
+                    <div class="key"><p>C</p><p>c</p></div>
+                    <div class="key"><p>V</p><p>v</p></div>
+                    <div class="key"><p>B</p><p>b</p></div>
+                    <div class="key"><p>N</p><p>n</p></div>
+                    <div class="key"><p>M</p><p>m</p></div>
+                    <div class="key"><p>,</p><p>,</p></div>
+                    <div class="key"><p>.</p><p>.</p></div>
+                    <div class="key"><p>/</p><p></p></div>
+                    <div class="key"><p>?</p><p></p></div>
+                    <div class="key"><p>Shift</p></div>
+                </div>
+                <div class="keyrow">
+                    <div class="key"><p>Fn</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Cmd</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Space</p></div>
+                    <div class="key"><p>Alt</p></div>
+                    <div class="key"><p>Ctrl</p></div>
+                    <div class="key"><p>Fn</p></div>
+                </div>
+            </div>
+        </page>
+        
+    </body>
+</html>

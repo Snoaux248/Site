@@ -28,10 +28,10 @@ page{
 
 /*Page Titles*/
 
-#TitleSmall{
+.TitleSmall{
     
     margin: 0px auto ;
-    width: 200px ;
+    width: 220px ;
     
     position: absolute ;
         top: 12.5px ;
@@ -41,23 +41,44 @@ page{
     font-size: 40px ;
     font-weight: normal ;
     color: #232323 ;
-        
+    opacity: 1 ;
+
     transition: .3s ;
-    opacity: 0 ;
 
     filter:drop-shadow(2px 2px 2px rgb(190, 190, 190, 0.25));
+    background: -webkit-linear-gradient(60deg, #000000, #2e0a97, #29b4db, #d8ffff);
+    -webkit-text-fill-color:transparent;
+    -webkit-background-clip: text;
 }
 
-#TitleBig{
+.titleSmallHidden{
+    opacity: 0 ;
+}
+@media only screen and (max-width: 830px){
+    .TitleSmall{
+        left: 10px ; 
+    }
+}
+@media only screen and (max-width: 1050px) and (min-width: 830px){
+    .TitleSmall{
+        left: -110px ;
+    }
+}
+@media only screen and (min-width: 1050px){
+    .TitleSmall{
+        left: 10px ; 
+    }
+}
+
+
+.TitleBig{
     
     padding: 150px 0px 30px 0px ;
     margin: 0px auto ;
     height: 100px ;
-
     
     position: relative ;
 
-    
     font-family: 'Great Vibes' ;
     font-size: 80px ;
     font-weight: bold ;
@@ -67,12 +88,21 @@ page{
     overflow: hidden ;
     opacity: 1 ;
     filter:drop-shadow(2px 2px 2px rgb(190, 190, 190, 0.25));
+
+    background: -webkit-linear-gradient(60deg, #000000, #310b72, #18d7d7, #d8ffff);
+    -webkit-text-fill-color:transparent;
+    -webkit-background-clip: text;
 }
 
+.titleBigHidden{
+    padding:0px;
+    height:0px;
+    opacity:0;
+}
 
 /*SearchBar*/
 
-#SearchAndLinks{
+.SearchAndLinks{
     
     margin: 10px auto 0px auto ;
     border-radius: 23px ;
@@ -91,23 +121,42 @@ page{
 }
 
 @media only screen and (max-width: 610px) and (min-width: 0px){
-    #SearchAndLinks{
+    .SearchAndLinks{
         width: -webkit-calc(100% - 20px);
     }
-    #Search{
+    .SearchAndLinksTop{
+        margin: 66px auto 0px auto;
+        top:0px;
+    }
+    .Search{
         width: -webkit-calc(100% - 90px);
     }
 }
-@media only screen and (max-width: 200000px) and (min-width: 610px){
-    #SearchAndLinks{
-        width:  590px;
+@media only screen and (max-width: 830px) and (min-width: 610px){
+    .SearchAndLinks{
+       width: 590px;
     }
-    #Search{
+    .SearchAndLinksTop{
+        margin: 66px auto 0px auto;
+        top:0px;
+    }
+    .Search{
         width: 500px ;
     }
 }
-#SearchAndLinks:hover{
-    /*-webkit-box-shadow: 0px 2px 2px rgb(190, 190, 190, 0.25) ;*/
+@media only screen and (max-width: 200000px) and (min-width: 830px){
+    .SearchAndLinks{
+        width: 590px;
+    }
+    .SearchAndLinksTop{
+        top:0px;
+    }
+    .Search{
+        width: 500px ;
+    }
+}
+.SearchAndLinks:hover{
+    -webkit-box-shadow: 0px 2px 2px rgb(190, 190, 190, 0.25) ;
     box-shadow: 0px 2px 2px rgb(190, 190, 190, .25) ;
 }
     #SearchBar{
@@ -127,6 +176,9 @@ page{
         overflow: hidden ;
         transition: .3s ;
         
+    }
+    #SearchBar:hover{
+        box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;
     }
         #Search{
         
@@ -179,7 +231,7 @@ page{
         opacity:.4;
         transition:.4s;
     }
-    #SearchAndLinks:hover #SearchSuggestions{
+    .SearchAndLinks:hover #SearchSuggestions{
         opacity:1;
     }
         .ssresult, .ssresultB{
@@ -377,7 +429,7 @@ page{
 
 /*HyperLinks*/
 
-#LinksDiv{
+.LinksDiv{
     
     display: inline-flex ;
     flex-wrap: wrap ;
@@ -385,13 +437,33 @@ page{
     margin: 65px auto 0px auto ;
     height: auto ;
     width: auto ;
-    
-    /*background-color:#333;*/
+
     position: relative ;
         
     transition: .3s ;
     z-index: 0 ;
     overflow: scroll ;
+    scrollbar-width: none;
+}
+.LinksDiv::-webkit-scrollbar {
+  display: none;
+  width: 0 !important; /* Important for ensuring no space is taken */
+  height: 0 !important;
+  -webkit-appearance: none; /* May be necessary for some older versions */
+  background: transparent; /* Ensures no background from the scrollbar */
+}
+
+@media only screen and (max-width: 830px) and (min-width: 0px){
+    .LinkBuffer{
+        margin:112px auto 0px auto;
+        z-index:1;
+    }
+}
+@media only screen and (max-width: 200000px) and (min-width: 830px){
+    .LinkBuffer{
+        margin:57px auto 0px auto;
+        z-index:1;
+    }
 }
 
     .HyperLinkStyle{
@@ -404,7 +476,7 @@ page{
         border-radius: 20px ;
         
         transition: .0s ;
-        overflow: scroll ;
+        overflow: hidden ;
 
         position:relative;
         left:auto;

@@ -14,6 +14,31 @@ var QuickLinks_structure = new arr();
 var links_structure = new arr();
 
 
+class page_info{
+
+    constructor(w, h){
+        this.width = w;
+        this.height = h;
+        this.columns = this.get_columns();
+        this.search_state = 0;
+        this.hyperlinks = 0;
+
+        this.QuickLinks_structure = new arr();
+        this.definitions_structure = new arr();
+        this.links_structure = new arr();
+    }
+    get_columns(){
+        if(this.width < 830){
+            return 1;
+        }
+        if(this.width < 1400){
+            return 2;
+        }
+        return 3;
+    }
+
+}
+var page = new page_info(window.innerWidth, window.innerHeight);
 
 var UIState;
 if(window.innerWidth < 630){
@@ -62,7 +87,8 @@ window.addEventListener('load', (e) =>{
 
 
 // Getting User HyperLinks from backend
-//get_UsersSavedLinks();
+get_UsersSavedLinks();
+
 
 async function get_UsersSavedLinks(){
   fetch('/api/fetchUsersLinks/', {
@@ -79,7 +105,7 @@ async function get_UsersSavedLinks(){
 
 // Read the links recieved from the backend
 function read_UsersSavedLinks(data){
-  var linksDiv = document.getElementById("LinksDiv");
+  var linksDiv = document.querySelector('.LinksDiv');
   linksDiv.innerHTML = null;
   JSON.stringify(data)
   Create_AddLinksButton();
@@ -87,7 +113,7 @@ function read_UsersSavedLinks(data){
     BuildQuickLink(data[i], i+1);
     CurrentLocation = i+1;
     CurrentLink = i+1;
-    QuickLinks_structure.insert(data[i]);
+    page.QuickLinks_structure.insert(data[i]);
   }
   CheckHyperlinkArrangment();
   //QuickLinks_structure.display();
@@ -96,11 +122,11 @@ function read_UsersSavedLinks(data){
 // Send Links to backend upon update
 async function send_UsersSavedLinks(){
   fetch('/api/sendUsersLinks/', {
-    method: 'Post',
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ users_saved_links: QuickLinks_structure.structure})
+    body: JSON.stringify({ users_saved_links: page.QuickLinks_structure.structure})
   })
   .then(response => response.json())
   .then(data => console.log(data))
@@ -114,14 +140,12 @@ async function send_UsersSavedLinks(){
 
 //old code for reference
 
-var FileTarget = "search/userSavedLinks.txt";
-Load_Users_HyperLinks(FileTarget);
-
+/*
 var Temp_Values = new Array(6);
-
-
+var FileTarget = "/search/userSavedLinks.txt";
 async function Load_Users_HyperLinks(FileToRead){
-    document.getElementById("LinksDiv").innerHTML = "";
+    var linksDiv = document.getElementById("LinksDiv");
+    linksDiv.innerHTML = null;
     Create_AddLinksButton();
 
     const inFS = new FileReader();
@@ -144,25 +168,14 @@ async function Load_Users_HyperLinks(FileToRead){
         }
         let index = i+1;
 //                     Title           Url             Title_C         Title_Hover     Background      Background_Hover
-        //BuildQuickLink(Temp_Values[1], Temp_Values[0], Temp_Values[4], Temp_Values[5], Temp_Values[2], Temp_Values[3], index);
-        const new_link = ({
-          'title': Temp_Values[1],
-          'url': Temp_Values[0],
-          'background_color': Temp_Values[2],
-          'background_hover': Temp_Values[3],
-          'title_color': Temp_Values[4],
-          'title_hover': Temp_Values[5]
-
-        });
-        BuildQuickLink(new_link, index);
-        CurrentLink = i+1;
-        QuickLinks_structure.insert(new_link);
+        BuildQuickLink(Temp_Values[1], Temp_Values[0], Temp_Values[4], Temp_Values[5], Temp_Values[2], Temp_Values[3], index);
       }
       CheckHyperlinkArrangment();
     });
 
-    let response = await fetch(FileToRead);
+    let response = await fetch('/api/usersLinks/');
     let data = await response.blob();
     inFS.readAsText(data);
     inFS.destroy;
-}
+}*/
+

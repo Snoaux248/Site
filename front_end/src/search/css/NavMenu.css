@@ -20,7 +20,6 @@ page{
 /*NavBar*/
 /*-------------*/
 #NavMenuHolder{
-    display:;
     position:absolute;
     
         top:10px;
@@ -88,7 +87,7 @@ page{
         opacity:0;
     
         transition:.3s;
-        overflow:scroll;
+        overflow:hidden;
     }
         /*-------------*/
         .pageredirect{

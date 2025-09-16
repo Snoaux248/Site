@@ -87,7 +87,6 @@ napi_value create_return_JSON(napi_env env, napi_callback_info info){
             struct definition *temp_def = *temp->definition_addr;
             int j = 0;
             while(temp_def != NULL){
-                
                 status = napi_create_object(env, &defObject);
                 assert(status == napi_ok);
                 //create {"definition" : ["result_def1", "result_def2"]}

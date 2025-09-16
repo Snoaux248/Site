@@ -40,10 +40,10 @@ document.getElementById("SearchIcon1").addEventListener("click", (event)  =>{
   document.getElementById("LinksAddButton").addEventListener('click', QuickLinkAdd);
 }*/
 
-document.getElementById("TitleSmall").addEventListener("click", (e) => {
+document.querySelector(".TitleSmall").addEventListener("click", (e) => {
   e.preventDefault();
   PageState = 1;
-  document.getElementById("AfterEnter").scrollTop = 0;
+  document.querySelector(".AfterEnter").scrollTop = 0;
   ResizeUI();
 });
 
@@ -76,19 +76,18 @@ window.addEventListener("resize", (e) =>{
     //WindowResizeTimeout = setTimeout(ResizeUI, 200);
 
     if(window.innerWidth <= 830 && window.innerWidth > 0 && PageResultState != 1){
-      ResizeUI();
       row_plus = [0];
       row_minus = [0];
 
       page_row = 0;
       page_col = 0;
-
+      
       ResultMerge(1);
       console.log("ResultState", PageResultState, "Set");
       PageResultState = 1;
+      
 
     }else if(window.innerWidth <= 1400 && window.innerWidth > 830 && PageResultState != 2){
-      ResizeUI();
       row_plus = [1, 0];
       row_minus = [1, 0];
 
@@ -100,7 +99,6 @@ window.addEventListener("resize", (e) =>{
       PageResultState = 2;
 
     }else if(window.innerWidth > 1400 && PageResultState != 3){
-      ResizeUI();
       row_plus = [1, 2, 0];
       row_minus = [2, 0, 1];
 
@@ -113,16 +111,7 @@ window.addEventListener("resize", (e) =>{
     }
     
     //Adjust #afterEnter's height height;
-    if(PageState == 2){
-      if(window.innerWidth <= 830 && window.innerWidth > 0){
-        document.querySelector("#AfterEnter").style.height = window.innerHeight - (46 + 46 + 10 * 3);
-        console.log("Height Adjustment");
-      }else if(window.innerWidth > 830){
-        document.querySelector("#AfterEnter").style.height = window.innerHeight - (46 + 10 * 2);
-      }
-    }
 
-    //ResizeUI();
     SetScroll();
 
 
@@ -134,6 +123,8 @@ window.addEventListener("resize", (e) =>{
     }
     keyboard_scale();
 });
+
+
 keyboard_scale();
 function keyboard_scale(){
   if(document.querySelector(".keyboard").offsetWidth > (window.innerWidth - 20)){
@@ -144,11 +135,46 @@ function keyboard_scale(){
   }
 }
 
-function ResultMerge(currentState){
 
+function ResultMerge(currentState){
+  
   var columnData;
   columnData = $("#Col1, #Col2, #Col3").children();
+  console.log("Length of children", columnData.length);
 
+  var columns = currentState;
+  console.log("columns", columns);
+  var columnWidth = document.getElementById("Col1").offsetWidth;
+  for(var i = 0; i < columnData.length; i++){
+    var child = columnData[i];
+    console.log("child", child);
+    var collisionParentColumn = (parseInt(child.getAttribute('column')) -1) % columns + 1;
+    console.log("collisionParentColumn", collisionParentColumn);
+    var collisionRight = Math.min(columns - collisionParentColumn, parseInt(child.getAttribute('right')));
+    console.log("collisionRight", collisionRight);
+    var collisionLeft = Math.min(collisionParentColumn - 1, parseInt(child.getAttribute('left')));
+    console.log("collisionLeft", collisionLeft);
+    var span = 1 + collisionRight + collisionLeft;
+    console.log("span", span);
+    var percentWidth = ((columnWidth * span) + (20 * (span - 1)))/(columnWidth)  * 100;
+    console.log(percentWidth);
+    var percentLeftOffset = (-((columnWidth + 20) * collisionLeft)/columnWidth) * 100;
+    console.log(percentLeftOffset);
+    if(columnData[i].parentNode.getAttribute("id") == ("Col" + collisionParentColumn)){
+      console.log("Collided with self");
+    }else{
+      document.getElementById("Col" + collisionParentColumn).appendChild(child);
+    }
+
+    //child.style.left = percentLeftOffset + "%";
+    //child.style.width = percentWidth + "%";
+
+    child.style.width = "calc("+span*100+"% + "+ (20* (span-1)) +"px)";
+    //console.log("calc("+span*100+"% + "+ (20* (span-1)) +"px)");
+    child.style.left = "calc(-"+collisionLeft*100+"% - "+ (20*(collisionLeft)) +"px)";
+    //console.log("calc(-"+collisionLeft*100+"% - "+ (20*(collisionLeft)) +"px)");
+  }
+  /*
   switch(currentState){
     case 1:
 
@@ -160,12 +186,14 @@ function ResultMerge(currentState){
       for(var i = 0; i < columnData.length; i++){
         if(columnData[i].getAttribute('type') == "hyperlink"){
           document.querySelector("#Col1").appendChild(columnData[i]);
+        }else if(columnData[i].getAttribute('type') == "external_link"){
+          //document.querySelector("#Col1").appendChild(columnData[i]);
+        }else{
+          document.querySelector("#Col1").appendChild(columnData[i]);
         }
       }
-      /*
-      for(var i = 0; i < columnData.length; i++){
-        document.querySelector("#Col1").appendChild(columnData[i]);
-      }*/
+      
+
       break;
     case 2:
       
@@ -173,101 +201,62 @@ function ResultMerge(currentState){
       if(columnData[i].getAttribute('type') == "definition"){
         document.querySelector("#Col2").appendChild(columnData[i]);
       }else if(columnData[i].getAttribute('type') == "hyperlink"){
+        document.querySelector("#Col2").appendChild(columnData[i]);
+      }else if(columnData[i].getAttribute('type') == "external_link"){
+        //document.querySelector("#Col1").appendChild(columnData[i]);
+      }else{
         document.querySelector("#Col1").appendChild(columnData[i]);
       }
     }
       break;
     case 3:
       for(var i = 0; i < columnData.length; i++){
-        if(columnData[i].className == "definition"){
+        if(columnData[i].getAttribute('type') == "definition"){
           document.querySelector("#Col2").appendChild(columnData[i]);
         }else if(columnData[i].getAttribute('type') == "hyperlink"){
-          document.querySelector("#Col1").appendChild(columnData[i]);
+          document.querySelector("#Col3").appendChild(columnData[i]);
+        }else if(columnData[i].getAttribute('type') == "external_link"){
+          //document.querySelector("#Col1").appendChild(columnData[i]);
+        }else{
+          document.querySelector("#Col3").appendChild(columnData[i]);
         }
       }
       break;
-  }
-  console.log(columnData);
+  }*/
+  //console.log(columnData);
 
 }
 function ResizeUI(){
   CheckHyperlinkArrangment();
-    document.getElementById('SearchAndLinks').style.transition = ".3s";
+    document.querySelector('.SearchAndLinks').style.transition = ".3s";
     if(PageState == 2){ 
         //SearchBar Reposition and Resize
-        document.getElementById("SearchAndLinks").style.top = "0px";
-        document.getElementById("TitleBig").style.padding = "0px";
-        document.getElementById("TitleBig").style.height = "0px";
-        document.getElementById("TitleBig").style.opacity = "0";
-        
-        if(window.innerWidth < 830){
-            document.getElementById("SearchAndLinks").style.margin = "66px auto 0px auto";
-            document.getElementById("LinksDiv").style.margin = "112px auto 0px auto";
-            document.getElementById("AfterEnter").style.height = window.innerHeight - (122);
-
-            document.getElementById("AE").style.transition = ".3s";
-            document.getElementById("AE").style.top = "122px";
-            document.getElementById("AE2").style.transition = ".3s";
-            document.getElementById("AE2").style.top = "122px";
-            setTimeout(() => {
-              document.getElementById("AE").style.transition = "0s";
-              document.getElementById("AE2").style.transition = "0s";
-            }, 400 );
-            console.log("SearchBar set to substate: 2"); // just below top of screen
-            console.log("Page Result height set to state: 2"); // adjusted height for search bar position
-        }else if(window.innerWidth >= 830){
-            document.getElementById("SearchAndLinks").style.margin = "10px auto 0px auto";
-            document.getElementById("LinksDiv").style.margin = "57px auto 0px auto";
-          
-            document.getElementById("AfterEnter").style.height = window.innerHeight - (67);
-
-            document.getElementById("AE").style.transition = ".3s";
-            document.getElementById("AE").style.top = "67px";
-            document.getElementById("AE2").style.transition = ".3s";
-            document.getElementById("AE2").style.top = "67px";
-            setTimeout(() => {
-              document.getElementById("AE").style.transition = "0s";
-              document.getElementById("AE2").style.transition = "0s";
-            }, 400 );
-            console.log("SearchBar set to substate: 1");  // at top of screen
-            console.log("Page Result height set to state: 1"); // adjusted height for search bar position
-        }
+        document.querySelector('.TitleSmall').classList.remove('titleSmallHidden');
+        document.querySelector('.TitleBig').classList.add('titleBigHidden');
+        document.querySelector('.AfterEnter').classList.add('AfterEnterShow');
+        document.querySelector('.SearchAndLinks').classList.add('SearchAndLinksTop');
+        document.querySelector('.LinksDiv').classList.add('LinkBuffer');
+            
         /*Title Reposition and resize */
         console.log("Title set to state 2"); // Title is displayed
-        document.querySelector('#TitleSmall').style.opacity = 1;
-        if(window.innerWidth < 830 || window.innerWidth > 1050){
-            document.querySelector('#TitleSmall').style.left = "10px";
-            console.log("Title set to substate 1"); // display full
-        }else  if(window.innerWidth >= 830 && window.innerWidth <= 1050){
-            document.querySelector('#TitleSmall').style.left = "-90px";
-            console.log("Title set to substate 2"); // display part
-        }
-        document.querySelector('#LinksDiv').style.height = "0px";
+        document.querySelector('.LinksDiv').style.height = "0px";
         document.querySelector('#LinksCreater').style.height = "0px";
         document.querySelector('#LinksCreater').style.padding = "0px 0px";
         document.querySelector('#SearchBar').style.height = "44px";
-        document.getElementById("LinksDiv").style.zIndex = "1";
-        document.getElementById("SearchAndLinks").style.border = "0px solid transparent";
+        document.querySelector('.SearchAndLinks').style.border = "0px solid transparent";
         console.log("Page set to state", PageState); // Results are displayed
         console.log("Hyperlinks set to state: 2"); // 1h x screen width
     }else if(PageState == 1){
-        //document.querySelector('#TitleSmall').style.opacity = 0;
-        document.getElementById("SearchAndLinks").style.top = "280px";
-        document.getElementById("SearchAndLinks").style.margin = "10px auto 0px auto";
-        document.getElementById("LinksDiv").style.margin = "65px auto 0px auto";
-        document.getElementById('AfterEnter').style.height = "0px";
 
-        document.getElementById("TitleBig").style.padding = "150px 0px 30px 0px";
-        document.getElementById("TitleBig").style.height = "100px";
-        document.getElementById("TitleBig").style.opacity = "1";
-        document.querySelector('#TitleSmall').style.left = "-200px";
-        document.querySelector('#TitleSmall').style.opacity = 0;
+        document.querySelector('.TitleBig').classList.remove('titleBigHidden');
+        document.querySelector('.TitleSmall').classList.add('titleSmallHidden');
+        document.querySelector(".AfterEnter").classList.remove('AfterEnterShow');
+        document.querySelector(".SearchAndLinks").classList.remove('SearchAndLinksTop');
+        document.querySelector('.LinksDiv').classList.remove('LinkBuffer');
 
-        document.querySelector('#LinksDiv').style.height = HyperlinkDivHeight;
-
-        document.getElementById("AE").style.top = "67px";
-        document.getElementById("AE2").style.top = "67px";
-
+        document.querySelector(".AfterEnter").classList.remove('AfterEnterShowLinks'); // Conditional
+        document.querySelector(".AE").classList.remove("ScrollShowLinks");
+        document.querySelector(".AE2").classList.remove("ScrollShowLinks");
         console.log("Title set to state 1"); // Title is not displayed
         console.log("Page set to state", PageState); // Results are not displayed
     }
@@ -279,51 +268,28 @@ function ResizeUI(){
 
 
 function HyperLinksShow(){
-    var HyperLinks = document.getElementById("LinksDiv");
-    HyperLinks.style.height = HyperlinkDivHeight + "px";
-    HyperLinks.style.opacity = 1;
+  var HyperLinks = document.querySelector('.LinksDiv');
+  HyperLinks.style.height = HyperlinkDivHeight + "px";
+  HyperLinks.style.opacity = 1;
 
-    if(document.getElementById("Search").value == ''){
-      document.getElementById("SearchBar").style.border = "1px solid transparent";
-    }else{
-      document.getElementById("SearchBar").style.border = "1px solid" + BorderColor;
-    }
+  if(document.getElementById("Search").value == ''){
+    document.getElementById("SearchBar").style.border = "1px solid transparent";
+  }else{
+    document.getElementById("SearchBar").style.border = "1px solid" + BorderColor;
+  }
+  if(PageState == 2){
+    document.querySelector(".AfterEnter").classList.add("AfterEnterShowLinks");
+    document.querySelector('.AE2').classList.add('ScrollShowLinks');
+    document.querySelector('.AE').classList.add('ScrollShowLinks');
+    //document.querySelector('.LinksDiv').style.marginBottom = "0px";
 
-    if(PageState == 2){
-      document.getElementById("LinksDiv").style.marginBottom = "0px";
-      document.getElementById("AfterEnter").style.top = "0px";
-      if(window.innerWidth < 830){
-        document.getElementById('AfterEnter').style.height = window.innerHeight - (244) + 'px';
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "244px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "244px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }else if(window.innerWidth < 1050){
-        document.getElementById('AfterEnter').style.height = window.innerHeight - (189) + 'px';
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "189px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "189px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }else if(window.innerWidth >= 1050){
-        document.getElementById("AfterEnter").style.height = window.innerHeight - (189) + 'px';
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "189px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "189px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }
-    }
+    document.querySelector(".AE").style.transition = ".3s";
+    document.querySelector(".AE2").style.transition = ".3s";
+    setTimeout(() => {
+        document.querySelector(".AE").style.transition = "0s";
+        document.querySelector(".AE2").style.transition = "0s";
+    }, 400 );
+  }
   setTimeout(() => {
     if(PageState == 2){
       SetScroll();
@@ -333,45 +299,21 @@ function HyperLinksShow(){
 
 function HyperLinksHide(){
 
-    document.querySelector('#LinksDiv').style.height = "0px";
-    document.querySelector('#LinksDiv').style.opacity = 0;
+  document.querySelector('.LinksDiv').style.height = "0px";
+  document.querySelector('.LinksDiv').style.opacity = 0;
 
-    if(PageState == 2){
-      document.getElementById("LinksDiv").style.marginBottom = "0px";
-      document.getElementById("AfterEnter").style.top = "0px";
-      if(window.innerWidth < 830){
-        document.getElementById('AfterEnter').style.height = window.innerHeight - (122) + 'px';
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "122px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "122px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }else if(window.innerWidth < 1050){
-        document.getElementById('AfterEnter').style.height = window.innerHeight - (67) + 'px';
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "67px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "67px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }else if(window.innerWidth >= 1050){
-        document.getElementById("AfterEnter").style.height = window.innerHeight - (67) + 'px';
+  if(PageState == 2){
+    document.querySelector(".AfterEnter").classList.remove("AfterEnterShowLinks");
+    document.querySelector('.AE2').classList.remove('ScrollShowLinks');
+    document.querySelector('.AE').classList.remove('ScrollShowLinks');
 
-        document.getElementById("AE").style.transition = ".3s";
-        document.getElementById("AE").style.top = "67px";
-        document.getElementById("AE2").style.transition = ".3s";
-        document.getElementById("AE2").style.top = "67px";
-        setTimeout(() => {
-          document.getElementById("AE").style.transition = "0s";
-          document.getElementById("AE2").style.transition = "0s";
-        }, 400 );
-      }
-    }
+    document.querySelector(".AE").style.transition = ".3s";
+    document.querySelector(".AE2").style.transition = ".3s";
+    setTimeout(() => {
+        document.querySelector(".AE").style.transition = "0s";
+        document.querySelector(".AE2").style.transition = "0s";
+    }, 400 );
+  }
     
   setTimeout(() => {
     if(PageState == 2){
@@ -386,12 +328,12 @@ function LinksAddShow(){
     Creator.style.height = "186px";
     Creator.style.padding = "0px 10px";
   
-    document.getElementById("LinksDiv").style.zIndex = "-1";
-    document.getElementById("SearchAndLinks").style.border = "1px solid" + BorderColor; //DarkMode Affected
+    document.querySelector('.LinksDiv').style.zIndex = "-1";
+    document.querySelector('.SearchAndLinks').style.border = "1px solid" + BorderColor; //DarkMode Affected
     console.log(BorderColor);
 
     if(PageState == 2){
-      document.getElementById("LinksDiv").style.marginBottom = "0px";
+      document.querySelector('.LinksDiv').style.marginBottom = "0px";
     }
 }
 
@@ -400,8 +342,8 @@ function LinksAddHide(){
     Creator.style.height = "0px";
     Creator.style.padding = "0px 10px";
   
-    document.getElementById("LinksDiv").style.zIndex = "1";
-    document.getElementById("SearchAndLinks").style.border = "0px solid transparent";
+    document.querySelector('.LinksDiv').style.zIndex = "1";
+    document.querySelector('.SearchAndLinks').style.border = "0px solid transparent";
 
 }
 
@@ -515,7 +457,7 @@ function autocomplete(inp, DataArray) {
           document.getElementById("SearchIcon2").style.padding = "7px 10px 7px 12px";
           document.getElementById("SearchIcon2").style.borderRight = " 1px solid" + BorderColor; //Darkmode Affected
 
-          document.getElementById("SearchAndLinks").style.boxShadow = "0px 2px 2px" + DropShadowColor;
+          document.querySelector('.SearchAndLinks').style.boxShadow = "0px 2px 2px" + DropShadowColor;
           document.getElementById("SearchBar").style.border = "1px solid" + BorderColor; //DarkMode Affected
           HyperLinksHide();
 
@@ -598,7 +540,8 @@ function autocomplete(inp, DataArray) {
         search_function();
         if(document.getElementById("Search").value != ""){
           document.getElementById("DisplayedSearch").innerHTML = document.getElementById("Search").value;
-          window.history.replaceState('data', '234', 'key?search='+ Search.value);
+          //window.history.replaceState('data', '234', 'key?search='+ Search.value);
+          modifyURL(Search.value);
         }
         if(DisplayedResults > -1 && SelectedResult > -1){
           parent.childNodes[SelectedResult].id = "SelectedSearch";
@@ -614,7 +557,7 @@ function autocomplete(inp, DataArray) {
         e.preventDefault();
         PageState = 1;
         ResizeUI();
-        document.getElementById("AfterEnter").scrollTop = 0;
+        document.querySelector(".AfterEnter").scrollTop = 0;
         AutoCompleteKill();
         
       } else if (e.keyCode == 9){
@@ -695,8 +638,8 @@ function AutoCompleteKill(){
   if(document.getElementById("Search").value == ""){
     document.getElementById("SearchBar").style.border = "1px solid transparent";
   }
-  document.getElementById("SearchAndLinks").style.boxShadow = "";
-  document.getElementById("AE").style.boxShadow = "none";
+  document.querySelector('.SearchAndLinks').style.boxShadow = "";
+  document.querySelector(".AE").style.boxShadow = "none";
   
 }
 
@@ -716,32 +659,26 @@ autocomplete(document.getElementById("Search", Results));
 /*Generate Page Results*/
 
 
-document.getElementById("AfterEnter").addEventListener("scroll", (e) => {
-  //console.log(document.getElementById("AfterEnter").scrollTop);
-  //console.log(document.getElementById("AfterEnter").scrollTop);
-  
-  SetScroll();
-  
+document.querySelector(".AfterEnter").addEventListener("scroll", (e) => {
+  SetScroll();  
 });
 function SetScroll(){
-  if(document.getElementById("AfterEnter").scrollTop > 0){
+  if(document.querySelector(".AfterEnter").scrollTop > 0){
 
-  document.getElementById("AE").style.transition = "0s";
-  document.getElementById("AE2").style.transition = "0s";
-  let FullHeight = document.getElementById("AfterEnter").scrollHeight;
-  let ShownHeight = document.getElementById("AfterEnter").offsetHeight;
-  let HiddenHeight = FullHeight - ShownHeight;
-  let x = window.innerWidth;
-  let step = x/HiddenHeight;
+    //document.querySelector(".AE").classList.add("");
+    document.querySelector(".AE").style.transition = "0s";
+    document.querySelector(".AE2").style.transition = "0s";
+    let FullHeight = document.querySelector(".AfterEnter").scrollHeight;
+    let ShownHeight = document.querySelector(".AfterEnter").offsetHeight;
+    let HiddenHeight = FullHeight - ShownHeight;
+    let x = window.innerWidth;
+    let step = x/HiddenHeight;
 
-  document.getElementById("AE2").style.width = document.getElementById("AfterEnter").scrollTop * step + "px";
-  //document.getElementById("AE").style.width = (parseInt(window.innerWidth) - (document.getElementById("AfterEnter").scrollTop * x/(FullHeight - ShownHeight))) + 'px';
-
-  //document.getElementById("AE").style.boxShadow = "inset 0 7px 9px -8px rgba(0, 0, 0, 1)";
-  document.getElementById("AE2").style.boxShadow = "inset 0 7px 9px -8px rgba(43, 129, 190, 1)";
-  let z = 1;
-  }else if(document.getElementById("AfterEnter").scrollTop < 1){
-    document.getElementById("AE").style.boxShadow = "none";
-    document.getElementById("AE2").style.boxShadow = "none";
+    document.querySelector(".AE2").style.width = document.querySelector(".AfterEnter").scrollTop * step + "px";
+    document.querySelector(".AE2").style.boxShadow = "inset 0 7px 9px -8px rgba(43, 129, 190, 1)";
+    let z = 1;
+  }else if(document.querySelector(".AfterEnter").scrollTop < 1){
+    document.querySelector(".AE").style.boxShadow = "none";
+    document.querySelector(".AE2").style.boxShadow = "none";
   }
 }

@@ -41,19 +41,56 @@ app.get('/Snow/Search',  (req, res) => {
 app.get('/Snow/Search/:searchquery', (req, res) => {
     console.log("ResultView");
     const searchKeyValue = req.query;
-
+    
     res.render('search', {search: searchKeyValue.search});
     app.use(express.static(path.join(__dirname, '/front_end/src/search')));
     app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
     
 });
-
+/*
 app.get('/Snow/Search/:request',  (req, res) => {
     //req.params.request;
     res.sendFile(path.join(__dirname, '/front_end/src/search.html'));
     app.use(express.static(path.join(__dirname, '/front_end/src/search')));
     app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
     console.log(req.params.request);
+});*/
+
+
+app.get('/Snow/Videos',  (req, res) => {
+    console.log("VideoView");
+
+    res.render('video', {search: "", url: "", wowow: ""});
+    console.log(__dirname);
+    app.use(express.static(path.join(__dirname, '/front_end/src/videos')))
+    app.use(express.static(path.join(__dirname, '/back_end/videos')));;
+    app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
+});
+app.get('/Snow/Videos/:searchquery', (req, res) => {
+    console.log("ResultView");
+    const searchKeyValue = req.query.search;
+    const urlKeyValue = req.query.url;
+
+    res.render('video', {search: (searchKeyValue == undefined ? "": searchKeyValue),
+                         url: (urlKeyValue == undefined ? "": urlKeyValue),
+                         wowow: (urlKeyValue == undefined ? "": "showMainPlayer")
+                            });
+    app.use(express.static(path.join(__dirname, '/front_end/src/videos')));
+    app.use(express.static(path.join(__dirname, '/back_end/videos')));
+    app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
+    
+});
+
+app.get('/Snow/MainPlayer/:url', (req, res) =>{
+    console.log("MainPlayer");
+
+    const urlKeyValue = req.query;
+
+    res.render('mainplayer', {url: urlKeyValue.url});
+    app.use(express.static(path.join(__dirname, '/front_end/src/mainplayer')));
+    app.use(express.static(path.join(__dirname, '/back_end/videos')));
+    app.use(express.static(path.join(__dirname, '/front_end/src/Fonts')));
+
 });
 
 app.get('/Snow/Login',  (req, res) => {

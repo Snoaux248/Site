@@ -29,12 +29,15 @@ function generate_Link(location){
     let d = document.querySelector("#Col" + location);
     var links = d.getElementsByClassName("PageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length + iframe.length;
+    var l = d.childElementCount;
 
 
   //pageResultInformation
-    d.appendChild(createNewElement('div', null, 'PageResult hyperlink'));
+    d.appendChild(createNewElement('div', null, 'PageResultContainer hyperlink'));
     d.children[l].setAttribute('type', 'hyperlink');
+    d.children[l].setAttribute('column', location);
+    d.children[l].setAttribute('left', 0);
+    d.children[l].setAttribute('right', 0);
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'resultPadding'));
     d.children[l].children[0].children[0].appendChild(createNewElement('a', null, 'PageLink'));
@@ -66,12 +69,15 @@ function generate_Knowledge(location){
     let d = document.querySelector("#Col" + location);
     var links = d.getElementsByClassName("PageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length + iframe.length;
+    var l = d.childElementCount;
 
 
   
-    d.appendChild(createNewElement('div', null, 'PageResult definition'));
+    d.appendChild(createNewElement('div', null, 'PageResultContainer definition'));
     d.children[l].setAttribute('type', 'definition');
+    d.children[l].setAttribute('column', location);
+    d.children[l].setAttribute('left', 0);
+    d.children[l].setAttribute('right', 0);
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'resultPadding'));
     d.children[l].children[0].children[0].appendChild(createNewElement('h', null, 'DeffWordSound'));
@@ -103,10 +109,13 @@ function generate_Graph(location, type){
     let d = document.querySelector("#Col" + location);
     var links = d.getElementsByClassName("PageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length + iframe.length;
+    var l = d.childElementCount;
 
-    d.appendChild(createNewElement('div', null, 'pageResultIframe external_link'));
+    d.appendChild(createNewElement('div', null, 'pageResultIframeContainer external_link'));
     d.children[l].setAttribute('type', 'external_link');
+    d.children[l].setAttribute('column', location);
+    d.children[l].setAttribute('left', 0);
+    d.children[l].setAttribute('right', 0);
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'iframeResultPadding'));
 
@@ -141,10 +150,10 @@ function gen1(){ // URLs
     }
     var links = d.getElementsByClassName("PageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length  + iframe.length;
+    var l = d.childElementCount;
 
   //pageResultInformation
-    d.appendChild(createNewElement('div', null, 'PageResult hyperlink'));
+    d.appendChild(createNewElement('div', null, 'PageResultContainer hyperlink'));
     d.children[l].setAttribute('type', 'hyperlink');
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'resultPadding'));
@@ -184,9 +193,11 @@ function gen2(){ //Definition
     }
     var links = d.getElementsByClassName("PageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length + iframe.length;
+    var l = d.childElementCount;
   
-    d.appendChild(createNewElement('div', null, 'PageResult definition'));
+    
+
+    d.appendChild(createNewElement('div', null, 'PageResultContainer definition'));
     d.children[l].setAttribute('type', 'definition');
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'resultPadding'));
@@ -217,7 +228,7 @@ function gen2(){ //Definition
 }
 
 function Create_AddLinksButton(){
-    let p = document.getElementById("LinksDiv");
+    let p = document.querySelector('.LinksDiv');
     p.appendChild(createNewElement('div', null, 'HyperLinkStyle'));
     p.children[0].appendChild(createNewElement('div', 'LinksAddButton', null));
     p.children[0].children[0].innerHTML = '+';
@@ -228,9 +239,10 @@ function Create_AddLinksButton(){
 }
 
 function BuildQuickLink(new_link, index){
-    let p = document.getElementById("LinksDiv");
-    console.log("index", index);
+    let p = document.querySelector('.LinksDiv');
+    console.log(index);
     p.appendChild(createNewElement('div', null, 'HyperLinkStyle'));
+    //p.children[index].appendChild(createNewElement('div', null, null));
     p.children[index].setAttribute('draggable', true);
     p.children[index].style.display = "inline-flex";
     p.children[index].appendChild(createNewElement('button', null, 'LinkDeleteButton'));
@@ -245,7 +257,6 @@ function BuildQuickLink(new_link, index){
         
     p.children[index].appendChild(createNewElement('p', 'LinksRedirect', null));
   
-    console.log(new_link);
     p.children[index].children[2].innerHTML = new_link.title.at(0).toUpperCase();
     p.children[index].children[2].style.color = new_link.title_color;
     p.children[index].children[2].style.backgroundColor = new_link.background_color;
@@ -273,11 +284,14 @@ function generate_definition(word, subjects, definitions){
     let d = document.querySelector("#Col2");
     var links = d.getElementsByClassName("pageResult");
     var iframe = d.getElementsByClassName("pageResultIframe");
-    var l = links.length + iframe.length;
+    var l = d.childElementCount;
 
 
-    d.appendChild(createNewElement('div', null, 'PageResult'));
+    d.appendChild(createNewElement('div', null, 'PageResultContainer'));
     d.children[l].setAttribute('type', 'definition');
+    d.children[l].setAttribute('column', 2);
+    d.children[l].setAttribute('left', 0);
+    d.children[l].setAttribute('right', 0);
     d.children[l].appendChild(createNewElement('div', null, 'pageResultInformation'));
     d.children[l].children[0].appendChild(createNewElement('div', null, 'resultPadding'));
     d.children[l].children[0].children[0].appendChild(createNewElement('h', null, 'DeffWordSound'));
@@ -290,28 +304,20 @@ function generate_definition(word, subjects, definitions){
         d.children[l].children[0].children[0].appendChild(createNewElement('p', null, 'deffWordIn'));
         d.children[l].children[0].children[0].children[5*i+1].innerHTML = subjects;
         d.children[l].children[0].children[0].appendChild(createNewElement('p', null, 'deffWordIn'));
-        d.children[l].children[0].children[0].children[5*i+2].innerHTML = "Lexical Categor";
-        if(definitions[i].atomicProperty.length == 1){
-            d.children[l].children[0].children[0].children[5*i+2].innerHTML += "y: "
-        }else{
-            d.children[l].children[0].children[0].children[5*i+2].innerHTML += "ies: ";
-        }
+        //d.children[l].children[0].children[0].children[5*i+2].innerHTML = "Lexical Categor";
+        definitions[i].atomicProperty.length == 1? d.children[l].children[0].children[0].children[5*i+2].innerHTML = "Lexical Category": d.children[l].children[0].children[0].children[5*i+2].innerHTML = "Lexical Categories";
         for(var j = 0; j < definitions[i].atomicProperty.length; j++){
-            if(j != 0){
-                d.children[l].children[0].children[0].children[5*i+2].innerHTML += ", ";
-            }
+            j != 0 ? d.children[l].children[0].children[0].children[5*i+2].innerHTML += ", ": null ;
             d.children[l].children[0].children[0].children[5*i+2].innerHTML += definitions[i].atomicProperty[j];
         }
-        if(definitions[i].atomicProperty.length == 0){
-            d.children[l].children[0].children[0].children[5*i+2].style.display = "none";
-        }
+        definitions[i].atomicProperty.length == 0 ? d.children[l].children[0].children[0].children[5*i+2].style.display = "none": null;
         d.children[l].children[0].children[0].appendChild(createNewElement('p', null, 'WordDeff'));
         d.children[l].children[0].children[0].children[5*i+3].innerHTML = '- ' + definitions[i].def;
         d.children[l].children[0].children[0].appendChild(createNewElement('p', null, 'WordSyn'));
         d.children[l].children[0].children[0].children[5*i+4].innerHTML = "Synonyms: ";
         d.children[l].children[0].children[0].appendChild(createNewElement('p', null, 'etymology'));
         d.children[l].children[0].children[0].children[5*i+5].innerHTML = "Etymology of _____ ";
-
+    }
         //description
         
         //pageResultDisclaimer
@@ -322,13 +328,6 @@ function generate_definition(word, subjects, definitions){
         d.children[l].children[2].innerHTML = "description";
 
         d.children[l].querySelector(".pageResultButtonH").addEventListener('click', DisplayFlag);
-    }
-}
-class page_coluns{
-    constructor(){
-        this.columns = [];
-        this.length = 0;
-    }
 }
 
 
