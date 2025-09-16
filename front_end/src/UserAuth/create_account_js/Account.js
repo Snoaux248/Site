@@ -102,7 +102,7 @@ const DiscardButton = document.getElementById("Cancel");
 DiscardButton.addEventListener("click", (enter) => {
 	enter.preventDefault();
     if(history.length == 1){
-        window.location.assign("http://127.0.0.1:8000/Snow/Login");
+        window.location.assign("https://snoaux248.github.io/Site/front_end/src/search.html");
     }else{
         window.history.back();
     }
