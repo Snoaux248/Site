@@ -67,6 +67,7 @@ console.log("Controller matrix: ", row_plus, row_minus, "Set On-Load");
 
 window.addEventListener('load', (e) => { 
   document.getElementById("Search").focus();
+  Create_AddLinksButton();
   if(document.querySelector('#Search').value === ""){
     console.log("fail");
   }else{
