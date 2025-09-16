@@ -577,6 +577,7 @@ function autocomplete(inp, DataArray) {
 function search_function(){
     var string = document.getElementById("Search").value;
     var data = { search: string };
+    /*
     fetch('/api/returnsearch/', {
       method: 'POST',
       headers: {
@@ -586,7 +587,7 @@ function search_function(){
     })
     .then(response => response.json())
     .then(data => populate_page(data))
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error:', error));*/
 }
 async function getURLInfo(SearchResult){
   search_function(SearchResult);
