@@ -478,7 +478,6 @@ page{
     margin:20px;
     padding:none;
     width:auto;
-    min-height:50px;
     transition:.2s;
 }
 
@@ -716,7 +715,7 @@ page{
             padding:auto;
             margin:0px 0px 0px 0px;
 
-            min-height:40px;
+            min-height:55px;
             width:100%;
 
             background-color:#ffffff72;
