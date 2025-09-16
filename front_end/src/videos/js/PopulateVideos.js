@@ -359,13 +359,13 @@ var setMainPlayer = function(child){
 
     document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].src = document.getElementsByClassName("mainplayer")[0].children[0].children[0].children[0].children[0].children[0].getAttribute('urlcheck');
     document.getElementById('PageResults').classList.add("showMainPlayer");
-
+    /*
     if(document.getElementById("Search").value != ""){
         let searchKey = document.getElementById("Search").value;
         window.history.replaceState('data', '234', 'key?search='+ searchKey +'&url='+ urlKey);
     }else{
         window.history.replaceState('data', '234', 'key?url='+ urlKey);
-    }
+    }*/
 }
 
 Array.from(previewVideoHolder).forEach(function(element) {
