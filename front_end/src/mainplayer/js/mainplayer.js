@@ -394,8 +394,8 @@ function DisplayFramePreview({pageX}){
     //console.log(pageX);
         if((mouseX - 70) < 10){
             FramePreview.style.left = "10px";
-        }else if((mouseX - 70) >= (VideoFrame.offsetWidth - 170-25)){
-            FramePreview.style.left = (VideoFrame.offsetWidth - 170-25);
+        }else if((mouseX - 70 - 25) >= (VideoFrame.offsetWidth - 170-25)){
+            FramePreview.style.left = (VideoFrame.offsetWidth - 170);
         }else{
             FramePreview.style.left = mouseX - 70+ "px";
         }
