@@ -156,7 +156,7 @@ page{
         width: 500px ;
     }
 }
-#SearchAndLinks:hover{
+.SearchAndLinks:hover{
     background-color: #fff ;
     /*-webkit-box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;*/
     box-shadow: 0px 2px 2px rgb(0, 0, 0, .25) ;
@@ -230,7 +230,7 @@ page{
         opacity:.4;
         transition:.4s;
     }
-    #SearchAndLinks:hover #SearchSuggestions{
+    .SearchAndLinks:hover #SearchSuggestions{
         opacity:1;
     }
         .ssresult, .ssresultB{
