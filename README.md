@@ -2,8 +2,8 @@
 
 ## Overview
 
-This current repository is a heavily modified version of the code to support GitHub Sites
-There is supposed to be a Node/Express backend however some JS would have to be uncommented for it to run and virtually every every path will need to be fixed
+This current repository is a heavily modified version of the code to support GitHub Sites.
+There is supposed to be a Node/Express backend however some JS would have to be uncommented for it to run and virtually every every path will need to be adjusted
 
 ---
     there is a plethora of planned features several being
