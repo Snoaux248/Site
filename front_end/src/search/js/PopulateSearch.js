@@ -84,7 +84,7 @@ var StackToggle = function(){
 
         Parent.parentNode.getElementsByClassName("stackbody")[0].classList.remove("hidden");
         Parent.parentNode.getElementsByClassName("stackbody")[0].classList.add("shown");
-        Parent.parentNode.getElementsByClassName("stackbody")[0].style.height = sum;
+        //Parent.parentNode.getElementsByClassName("stackbody")[0].style.height = sum;
     }else if(this.innerHTML === 'keyboard_arrow_up'){
         this.innerHTML = 'keyboard_arrow_down';
         this.parentNode.parentNode.parentNode.setAttribute('preview', 0);
@@ -93,7 +93,7 @@ var StackToggle = function(){
                 Children.children[i].classList.remove("shown");
                 Children.children[i].classList.add("hidden");
             }
-        Parent.parentNode.getElementsByClassName("stackbody")[0].style.height = "20px";
+        //Parent.parentNode.getElementsByClassName("stackbody")[0].style.height = "20px";
         Parent.parentNode.getElementsByClassName("stackbody")[0].classList.remove("shown");
         Parent.parentNode.getElementsByClassName("stackbody")[0].classList.add("hidden");
     }
@@ -138,7 +138,7 @@ var ScrollInit = function(element){
             var next = ((current + direction) % Length + Length) % Length;
 
             element.parentNode.parentNode.parentNode.setAttribute('preview', next);
-            Parent.style.height = Parent.children[next].offsetHeight + 10;
+            //Parent.style.height = Parent.children[next].offsetHeight + 10;
             temp_func2(Parent.children[current]);
             temp_func(Parent.children[next]);
         }
