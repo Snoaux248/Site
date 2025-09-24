@@ -594,15 +594,16 @@ page{
     
     a.pagelink{
         padding:0px;
-        width:0%;
-        height:0px;
-        max-height: 10px;
         font-family:'arial';
         font-size:18px;
         font-weight:bolder;
 
+        text-wrap: wrap;
+        word-wrap:break-word;
+        overflow-wrap:break-word;
         position:relative;
-        overflow:hidden;
+        white-space: pre-wrap;
+        
         background: -webkit-linear-gradient(30deg, #1640bb 9.6%, #25a7ff 93.6%);
            -webkit-text-fill-color:transparent;
 
@@ -724,6 +725,7 @@ page{
         }
         .stackhead .resultPadding{
             margin:10px 0px 0px 0px;
+            flex-shrink: 1;
         }
         .stackhead:hover{
             -webkit-box-shadow: 0px 0px 4px 4px rgb(190, 190, 190, .25);
