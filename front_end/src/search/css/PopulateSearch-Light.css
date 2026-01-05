@@ -581,31 +581,31 @@ page{
     transition:.5s;
 }
     
-     a.pagelink:visited::before{
+    .pagelink:visited::before{
         content: "";
         position: absolute;
-        padding:0px;
-        overflow:hidden;
         top: 20px;
-        width: 100%;
+        width: auto;
         left: 0%;
         height: 2px;
         border-radius: 2px;
         background: -webkit-linear-gradient(30deg, #9c27b0 9.6%, #d98ee5 93.6%);
-     }
-
+    }
+    
     a.pagelink{
         padding:0px;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        height:0px;
+        max-height: 10px;
         font-family:'arial';
         font-size:18px;
         font-weight:bolder;
 
-        text-wrap: wrap;
-        word-wrap:break-word;
-        overflow-wrap:break-word;
         position:relative;
-        white-space: pre-wrap;
-        
+        overflow:hidden;
         background: -webkit-linear-gradient(30deg, #1640bb 9.6%, #25a7ff 93.6%);
            -webkit-text-fill-color:transparent;
 
@@ -613,20 +613,20 @@ page{
            background-clip: text;
         transition:.2s;
     }
-    
-    a.pagelink::before{
+
+    a.pagelink:before{
         content: "";
         position: absolute;
         top: 20px;
         width: 0%;
         left: 50%;
         height: 2px;
-        border-radius: 1px;
+        border-radius: 2px;
         background: -webkit-linear-gradient(30deg, #1640bb 9.6%, #25a7ff 93.6%) ;
         transition:.2s;
         
     }
-    
+
      a.pagelink:link:visited{
         background: -webkit-linear-gradient(30deg, #9c27b0 9.6%, #d98ee5 93.6%);
             -webkit-text-fill-color:transparent;
@@ -638,7 +638,6 @@ page{
     a.pagelink:hover{
         background: -webkit-linear-gradient(30deg, #00bbf7 9.6%, #b4e1ff 93.6%);
             -webkit-text-fill-color:transparent;
-
             -webkit-background-clip: text;
             background-clip: text;
     }
@@ -662,6 +661,7 @@ page{
         left: 50%;
         background: -webkit-linear-gradient(30deg, #9c27b0 9.6%, #d98ee5 93.6%);
     }
+    
     .PagePublish{
         margin:15px 0px 5px 15px;
         width:auto;

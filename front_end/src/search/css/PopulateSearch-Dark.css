@@ -581,7 +581,7 @@ page{
     transition:.5s;
 }
     
-     .pagelink:visited::before{
+    .pagelink:visited::before{
         content: "";
         position: absolute;
         top: 20px;
@@ -590,20 +590,22 @@ page{
         height: 2px;
         border-radius: 2px;
         background: -webkit-linear-gradient(30deg, #9c27b0 9.6%, #d98ee5 93.6%);
-     }
+    }
     
     a.pagelink{
         padding:0px;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        height:0px;
+        max-height: 10px;
         font-family:'arial';
         font-size:18px;
         font-weight:bolder;
 
-        text-wrap: wrap;
-        word-wrap:break-word;
-        overflow-wrap:break-word;
         position:relative;
-        white-space: pre-wrap;
-        
+        overflow:hidden;
         background: -webkit-linear-gradient(30deg, #1640bb 9.6%, #25a7ff 93.6%);
            -webkit-text-fill-color:transparent;
 
