@@ -525,7 +525,7 @@ page{
 
         .graph{
             width:100%;
-            aspect-ratio:8.5/11;
+            aspect-ratio:16/9;
             border-radius:15px;
             overflow:hidden;
             border:none;
@@ -580,7 +580,14 @@ page{
     left:0px;
     transition:.5s;
 }
-    
+    .contextIcon{
+        font-family:"Material Icons";
+        position:relative;
+        top:4px;
+        font-size: 20px; 
+        color:#999;
+    }
+
     .pagelink:visited::before{
         content: "";
         position: absolute;
@@ -680,7 +687,7 @@ page{
     .keywords{
         padding:0px 0px 0px 0px;
         margin:0px 20px;
-        width:50%;
+        width:100%;
         height:auto;
 
         font-family:'arial';
@@ -690,7 +697,7 @@ page{
     .Mkeywords{
         padding:0px 0px 0px 0px;
         margin:0px 20px;
-        width:50%;
+        width:100%;
         height:auto;
 
         font-family:'arial';

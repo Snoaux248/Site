@@ -236,7 +236,7 @@ iframe::-webkit-scrollbar {
         grid-template-columns:1fr;
     }
 }
-@media only screen and (max-width: 1950px) and (min-width: 1625px){
+@media only screen and (max-width: 10950px) and (min-width: 1625px){
     #PageResults{
         grid-template-columns:0fr 1fr;
     }

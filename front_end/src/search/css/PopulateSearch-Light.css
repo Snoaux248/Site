@@ -526,7 +526,7 @@ page{
         }
         .graph{
             width:100%;
-            aspect-ratio:8.5/11;
+            aspect-ratio:16/9;
             border-radius:15px;
             overflow:hidden;
             border:none;
@@ -580,7 +580,13 @@ page{
     left:0px;
     transition:.5s;
 }
-    
+    .contextIcon{
+        font-family:"Material Icons";
+        position:relative;
+        top:4px;
+        font-size: 20px; 
+        color:#333;
+    }
     .pagelink:visited::before{
         content: "";
         position: absolute;
@@ -661,7 +667,7 @@ page{
         left: 50%;
         background: -webkit-linear-gradient(30deg, #9c27b0 9.6%, #d98ee5 93.6%);
     }
-    
+
     .PagePublish{
         margin:15px 0px 5px 15px;
         width:auto;
@@ -681,7 +687,7 @@ page{
     .keywords{
         padding:0px 0px 0px 0px;
         margin:0px 20px;
-        width:50%;
+        width:100%;
         height:auto;
 
         font-family:'arial';
@@ -691,7 +697,7 @@ page{
     .Mkeywords{
         padding:0px 0px 0px 0px;
         margin:0px 20px;
-        width:50%;
+        width:100%;
         height:auto;
 
         font-family:'arial';
